@@ -3,23 +3,236 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NOBLEARC</title>
+  <title>NobleArc — Building What Comes Next</title>
+  <meta name="description" content="NobleArc builds, launches and grows products and companies designed for the long term." />
+  <meta property="og:title" content="NobleArc — Building What Comes Next" />
+  <meta property="og:description" content="NobleArc builds, launches and grows products and companies designed for the long term." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://noblearc.se" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;family=Montserrat:wght@200&amp;display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="splash-active">
+
+  <nav class="nav" id="nav" aria-label="Primary">
+    <div class="nav-inner">
+      <a class="nav-logo" href="/">NobleArc</a>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+      <ul class="nav-links">
+        <li><a href="#ventures">Ventures</a></li>
+        <li><a href="#lab">Lab</a></li>
+        <li><a href="#journal">Ideas</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a class="nav-cta" href="#contact">Start a conversation</a></li>
+      </ul>
+    </div>
+  </nav>
 
   <div id="splash" class="splash">
     <h1>NOBLEARC</h1>
   </div>
 
-  <main>
-    <section class="hero">
-      <h2>Välkommen till NOBLEARC</h2>
+  <main id="content">
+    <section class="section welcome" id="welcome">
+      <div class="container">
+        <h2 class="welcome-title">Välkommen till NOBLEARC</h2>
+        <span class="scroll-hint">Scroll</span>
+      </div>
+    </section>
+
+    <section class="section hero" id="hero">
+      <div class="container">
+        <h1 class="hero-title">We build what comes next.</h1>
+        <p class="hero-sub">NobleArc is a venture studio building products, companies and ideas for the long term.</p>
+        <div class="hero-ctas">
+          <a href="#what-is" class="btn">Explore NobleArc</a>
+          <a href="#ventures" class="btn btn-ghost">Our ventures</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section what-is" id="what-is">
+      <div class="container narrow">
+        <span class="eyebrow">What is NobleArc?</span>
+        <h2 class="section-title">One arc. Many possibilities.</h2>
+        <p class="section-lead">NobleArc is a home for ideas with potential. We build, launch and grow products and companies designed to matter for years — not months.</p>
+        <div class="concept-grid">
+          <article class="concept">
+            <h3>Build</h3>
+            <p>We turn ideas into products.</p>
+          </article>
+          <article class="concept">
+            <h3>Grow</h3>
+            <p>We help promising companies become exceptional.</p>
+          </article>
+          <article class="concept">
+            <h3>Own</h3>
+            <p>We build lasting businesses under the NobleArc umbrella.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section arc" id="arc">
+      <div class="container narrow">
+        <span class="eyebrow">The Arc</span>
+        <h2 class="section-title">Everything starts with an idea.</h2>
+        <svg class="arc-line" viewBox="0 0 300 80" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <path d="M10,70 Q150,0 290,70" />
+        </svg>
+        <p class="section-lead">An arc is a direction. A movement from where you are to where you could be. NobleArc exists to build that journey.</p>
+      </div>
+    </section>
+
+    <section class="section ventures" id="ventures">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <span class="eyebrow">Our ventures</span>
+            <h2 class="section-title">Built by NobleArc.</h2>
+          </div>
+          <p class="section-lead">A growing portfolio of products, companies and experiments.</p>
+        </div>
+        <div class="venture-grid">
+          <a class="venture-card" href="ventures/wise/">
+            <div class="venture-status">Exploring</div>
+            <h3>WISE</h3>
+            <p>Intelligence for everyday decisions.</p>
+          </a>
+          <a class="venture-card" href="ventures/vue/">
+            <div class="venture-status">In development</div>
+            <h3>VUE</h3>
+            <p>See the world differently.</p>
+          </a>
+          <a class="venture-card" href="ventures/north/">
+            <div class="venture-status">Coming soon</div>
+            <h3>NORTH</h3>
+            <p>Direction for ambitious teams.</p>
+          </a>
+          <a class="venture-card" href="ventures/forge/">
+            <div class="venture-status">NobleArc venture</div>
+            <h3>FORGE</h3>
+            <p>Where ideas become products.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section why" id="why">
+      <div class="container">
+        <span class="eyebrow">Why NobleArc?</span>
+        <h2 class="section-title">We think long term.</h2>
+        <div class="principle-grid">
+          <article class="principle">
+            <span class="principle-num">01</span>
+            <h3>Long term</h3>
+            <p>We build for years, not hype cycles.</p>
+          </article>
+          <article class="principle">
+            <span class="principle-num">02</span>
+            <h3>Obsession</h3>
+            <p>Great products come from caring about the details.</p>
+          </article>
+          <article class="principle">
+            <span class="principle-num">03</span>
+            <h3>Possibility</h3>
+            <p>The best ideas often begin before the market understands them.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section lab" id="lab">
+      <div class="container narrow">
+        <span class="eyebrow">NobleArc Lab</span>
+        <h2 class="section-title">Not every idea becomes a company. Every great company starts as an idea.</h2>
+        <div class="lab-grid">
+          <div class="lab-pill"><span class="lab-dot exploring"></span>Exploring</div>
+          <div class="lab-pill"><span class="lab-dot prototype"></span>Prototype</div>
+          <div class="lab-pill"><span class="lab-dot building"></span>Building</div>
+          <div class="lab-pill"><span class="lab-dot private"></span>Private</div>
+          <div class="lab-pill"><span class="lab-dot launched"></span>Launched</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section journal" id="journal">
+      <div class="container">
+        <span class="eyebrow">Ideas worth exploring</span>
+        <h2 class="section-title">Journal</h2>
+        <div class="article-list">
+          <article class="article-card">
+            <a href="#journal">The next generation of software will feel invisible.</a>
+          </article>
+          <article class="article-card">
+            <a href="#journal">Why boring companies can become extraordinary.</a>
+          </article>
+          <article class="article-card">
+            <a href="#journal">Building for the next decade.</a>
+          </article>
+          <article class="article-card">
+            <a href="#journal">What makes a product inevitable?</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section about" id="about">
+      <div class="container narrow">
+        <span class="eyebrow">About</span>
+        <h2 class="section-title">Built for what comes next.</h2>
+        <p class="section-lead">NobleArc is an independent company building and backing products, technologies and businesses with long-term potential.</p>
+        <ul class="traits">
+          <li>Independent.</li>
+          <li>Long-term.</li>
+          <li>Curious.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <div class="container narrow">
+        <span class="eyebrow">Contact</span>
+        <h2 class="section-title">Have an idea?</h2>
+        <p class="section-lead">We're always interested in things that shouldn't exist yet.</p>
+        <form class="contact-form" id="contact-form" action="#" novalidate>
+          <input type="text" name="name" placeholder="Name" required />
+          <input type="email" name="email" placeholder="Email" required />
+          <input type="text" name="building" placeholder="What are you building?" />
+          <textarea name="message" rows="4" placeholder="Message" required></textarea>
+          <button type="submit" class="btn">Send to NobleArc →</button>
+        </form>
+      </div>
     </section>
   </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <strong>NOBLEARC</strong>
+          <p>Building what comes next.</p>
+        </div>
+        <ul class="footer-links">
+          <li><a href="#ventures">Ventures</a></li>
+          <li><a href="#lab">Lab</a></li>
+          <li><a href="#journal">Ideas</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 NobleArc</p>
+        <div class="footer-legal">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>
