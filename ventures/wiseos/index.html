@@ -248,6 +248,17 @@
       }
       body.theme-wiseos .nav-links a { color: var(--wise-text) !important; }
     }
+    body.theme-wiseos .product-stage .phone-card {
+      background: var(--wise-glass);
+      border-color: var(--wise-border);
+      color: var(--wise-text);
+      box-shadow: 0 40px 100px rgba(28, 26, 30, 0.10);
+    }
+    body.theme-wiseos .product-stage .frame-desc { color: var(--wise-muted); }
+    body.theme-wiseos .product-stage .frame-row { border-color: rgba(28, 26, 30, 0.08); }
+    body.theme-wiseos .product-stage .stage-hint { color: var(--wise-muted); }
+    body.theme-wiseos .product-stage .stage-progress span { background: rgba(28, 26, 30, 0.15); }
+    body.theme-wiseos .product-stage .stage-progress span.active { background: var(--wise-text); }
   </style>
 </head>
 <body class="loaded theme-wiseos">
@@ -354,29 +365,67 @@
 
     <section class="section in-view" id="showcase">
       <div class="container">
-        <span class="eyebrow" style="display: block; color: var(--wise-primary);">Säker förhandsvisning</span>
-        <h2 class="section-title" style="color: var(--wise-text);">En lugn arbetsyta för lärare.</h2>
-        <p class="section-lead" style="color: var(--wise-muted); max-width: 52ch; margin: 0 auto 2rem; text-align: center;">Endast syntetiska demo-tillstånd. Inga riktiga elever, betyg, uppgifter eller data visas.</p>
-        <div class="ui-showcase">
-          <div class="ui-card">
-            <div class="ui-bar"><span>Elevens svar</span><span>Demo</span></div>
-            <div class="handwriting">x² − 4x + 3 = 0<br>x = 1, x = 3</div>
+        <span class="eyebrow" style="display: block; color: var(--wise-primary);">Produktupplevelse</span>
+        <h2 class="section-title" style="color: var(--wise-text);">Från handskrift till färdig rättning.</h2>
+        <p class="section-lead" style="color: var(--wise-muted); max-width: 52ch; margin: 0 auto 2rem; text-align: center;">Så går det till när WiseOS tar hand om ett elevsvar. Inga riktiga elever, bara syntetisk demo-data.</p>
+        <div class="product-stage" role="img" aria-label="WiseOS rättningsdemo">
+          <div class="phone-card">
+            <div class="phone-screen">
+              <div class="frames">
+                <div class="frame active">
+                  <span class="frame-label" style="color: var(--wise-primary);">Elevens svar</span>
+                  <h3 class="frame-title" style="color: var(--wise-text);">Handskriven lösning</h3>
+                  <p class="frame-desc">Ett foto av elevens arbete.</p>
+                  <div class="frame-hand" style="font-size: 2rem; color: var(--wise-text);">x² − 4x + 3 = 0<br>x = 1, x = 3</div>
+                </div>
+                <div class="frame">
+                  <span class="frame-label" style="color: var(--wise-primary);">OCR</span>
+                  <h3 class="frame-title" style="color: var(--wise-text);">Läser lösningen</h3>
+                  <p class="frame-desc">Bilden tolkas som strukturerad LaTeX och text.</p>
+                  <div class="frame-feedback" style="background: rgba(155, 90, 151, 0.08); border-color: rgba(155, 90, 151, 0.15); color: var(--wise-text);">
+                    <code style="font-family: monospace; font-size: 0.85rem;">x^2 - 4x + 3 = 0</code>
+                  </div>
+                </div>
+                <div class="frame">
+                  <span class="frame-label" style="color: var(--wise-primary);">Verifiering</span>
+                  <h3 class="frame-title" style="color: var(--wise-text);">Matematiskt korrekt</h3>
+                  <p class="frame-desc">Lösningen är ekvivalent med det rätta svaret.</p>
+                  <div style="margin-top: 0.5rem; font-size: 1.5rem; color: #2D8A5F;">✓</div>
+                </div>
+                <div class="frame">
+                  <span class="frame-label" style="color: var(--wise-primary);">Lärarregler</span>
+                  <h3 class="frame-title" style="color: var(--wise-text);">Poängsättning</h3>
+                  <p class="frame-desc">Lärarens regler tillämpas konsekvent.</p>
+                  <div class="frame-ui">
+                    <div class="frame-row" style="border-color: rgba(28, 26, 30, 0.08);"><span>Metod</span><strong style="color: #2D8A5F;">+2p</strong></div>
+                    <div class="frame-row" style="border-color: rgba(28, 26, 30, 0.08);"><span>Uppställning</span><strong style="color: #2D8A5F;">+1p</strong></div>
+                    <div class="frame-row" style="border-color: rgba(28, 26, 30, 0.08);"><span>Motivering</span><strong>krävs</strong></div>
+                  </div>
+                </div>
+                <div class="frame">
+                  <span class="frame-label" style="color: var(--wise-primary);">AI-feedback</span>
+                  <h3 class="frame-title" style="color: var(--wise-text);">Pedagogisk återkoppling</h3>
+                  <p class="frame-desc">Förklaringar anpassade för elevens nivå.</p>
+                  <div class="frame-feedback" style="background: rgba(155, 90, 151, 0.08); border-color: rgba(155, 90, 151, 0.15); color: var(--wise-text);">Din metod är korrekt fram till det sista steget. Kontrollera teckenbytet när du förenklar uttrycket.</div>
+                </div>
+                <div class="frame">
+                  <span class="frame-label" style="color: var(--wise-primary);">Granskning</span>
+                  <h3 class="frame-title" style="color: var(--wise-text);">Läraren godkänner</h3>
+                  <p class="frame-desc">Människa i loopen när det behövs.</p>
+                  <div class="frame-ui" style="align-items: center; justify-content: center; flex: 1; gap: 0.5rem;">
+                    <span class="frame-pill" style="background: rgba(155, 90, 151, 0.12); color: var(--wise-primary);">AI-förslag</span>
+                    <span style="font-size: 1.2rem; color: var(--wise-primary);">↓</span>
+                    <span class="frame-pill" style="background: rgba(155, 90, 151, 0.12); color: var(--wise-primary);">Godkänt</span>
+                    <span style="font-size: 1.2rem; color: var(--wise-primary);">↓</span>
+                    <span class="frame-pill" style="background: rgba(45, 138, 95, 0.12); color: #2D8A5F;">Klart</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="ui-card">
-            <div class="ui-bar"><span>OCR-resultat</span><span>Demo</span></div>
-            <div class="ui-pill">LaTeX-konvertering</div>
-            <p style="font-family: monospace; font-size: 0.85rem; color: var(--wise-secondary);">x^2 - 4x + 3 = 0</p>
-          </div>
-          <div class="ui-card">
-            <div class="ui-bar"><span>Rättningsresultat</span><span>Demo</span></div>
-            <div class="ui-row"><strong>Bedömning</strong><span>Rätt</span></div>
-            <div class="ui-row"><strong>Säkerhet</strong><span class="ui-score">Hög</span></div>
-            <div class="ui-row"><strong>Delpoäng</strong><span>100%</span></div>
-          </div>
-          <div class="ui-card">
-            <div class="ui-bar"><span>Återkoppling</span><span>Demo</span></div>
-            <div class="ui-pill">AI-genererad</div>
-            <p style="font-size: 0.85rem; color: var(--wise-secondary); line-height: 1.5;">Båda rötterna är rätt. Faktoriseringen och användningen av pq-formeln ger x = 1 och x = 3.</p>
+          <div class="stage-hint" style="color: var(--wise-muted);">Animationen startar när WiseOS syns i skärmen</div>
+          <div class="stage-progress" aria-hidden="true">
+            <span class="active"></span><span></span><span></span><span></span><span></span><span></span>
           </div>
         </div>
       </div>

@@ -29,15 +29,44 @@ document.addEventListener('DOMContentLoaded', () => {
   if (toggle && navLinks) {
     toggle.addEventListener('click', () => {
       const open = navLinks.classList.toggle('open');
+      toggle.classList.toggle('open', open);
       toggle.setAttribute('aria-expanded', open);
     });
     navLinks.querySelectorAll('a').forEach((a) => {
       a.addEventListener('click', () => {
         navLinks.classList.remove('open');
+        toggle.classList.remove('open');
         toggle.setAttribute('aria-expanded', 'false');
       });
     });
   }
+
+  // Product stages — scroll-driven mini product experiences
+  const stages = document.querySelectorAll('.product-stage');
+  stages.forEach((stage) => {
+    const frames = stage.querySelectorAll('.frame');
+    const dots = stage.querySelectorAll('.stage-progress span');
+    if (!frames.length) return;
+    let index = 0;
+    let timer = null;
+    const setFrame = (i) => {
+      frames.forEach((f, n) => f.classList.toggle('active', n === i));
+      dots.forEach((d, n) => d.classList.toggle('active', n === i));
+      index = i;
+    };
+    const advance = () => setFrame((index + 1) % frames.length);
+    const start = () => {
+      if (timer) return;
+      timer = setInterval(advance, 2400);
+    };
+    const stop = () => {
+      if (timer) { clearInterval(timer); timer = null; }
+    };
+    setFrame(0);
+    new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) start(); else stop(); });
+    }, { threshold: 0.4 }).observe(stage);
+  });
 
   // Reveal on scroll
   const sections = document.querySelectorAll('.section');
