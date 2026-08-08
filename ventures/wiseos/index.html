@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WiseOS — AI Grading for STEM | NobleArc</title>
-  <meta name="description" content="WiseOS by NobleArc. An AI-powered grading assistant for STEM teachers that reads handwriting, verifies math and generates clear feedback." />
+  <title>WiseOS — AI-driven rättning för STEM | NobleArc</title>
+  <meta name="description" content="WiseOS från NobleArc. En AI-driven rättningsassistent för STEM-lärare som läser handskrift, verifierar matematik och ger tydlig feedback." />
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -62,6 +62,8 @@
       background: rgba(155, 90, 151, 0.05);
       border-color: var(--wise-primary);
     }
+    body.theme-wiseos .hero-title { margin-bottom: 2rem; }
+    body.theme-wiseos .hero-sub { margin: 0 auto 2.5rem; }
 
     .wiseos-wordmark {
       max-width: 240px;
@@ -252,13 +254,13 @@
   <nav class="nav" id="nav" aria-label="Primary">
     <div class="nav-inner">
       <a class="nav-logo" href="../../index.html">NobleArc</a>
-      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+      <button class="nav-toggle" aria-label="Öppna meny" aria-expanded="false"><span></span><span></span></button>
       <ul class="nav-links">
-        <li><a href="../../index.html#ventures">Ventures</a></li>
+        <li><a href="../../index.html#ventures">Satsningar</a></li>
         <li><a href="../../index.html#lab">Lab</a></li>
-        <li><a href="../../index.html#journal">Ideas</a></li>
-        <li><a href="../../index.html#about">About</a></li>
-        <li><a class="nav-cta" href="../../index.html#contact">Start a conversation</a></li>
+        <li><a href="../../index.html#journal">Idéer</a></li>
+        <li><a href="../../index.html#about">Om</a></li>
+        <li><a class="nav-cta" href="../../index.html#contact">Starta ett samtal</a></li>
       </ul>
     </div>
   </nav>
@@ -266,52 +268,52 @@
   <main class="reveal">
     <section class="section in-view hero" id="hero" style="padding-top: 8rem;">
       <div class="container">
-        <p class="eyebrow"><a href="../../index.html#ventures">← NobleArc</a></p>
+        <p class="eyebrow"><a href="../../index.html#ventures">← Tillbaka</a></p>
         <img class="wiseos-wordmark" src="assets/wiseos-wordmark.png" alt="WiseOS" />
         <h1 class="hero-title" style="color: var(--wise-text); font-size: clamp(2rem, 7vw, 4.5rem);">AI-driven rättning för STEM.</h1>
-        <p class="hero-sub" style="max-width: 52ch; color: var(--wise-muted);">WiseOS reads handwritten student answers, verifies the mathematics, applies teacher-defined grading rules and generates clear pedagogical feedback.</p>
-        <div class="hero-ctas" style="margin-bottom: 1.5rem;">
-          <a href="#pipeline" class="wiseos-cta">Explore WiseOS</a>
-          <span style="color: var(--wise-muted); font-size: 0.85rem; align-self: center;">Pilot</span>
+        <p class="hero-sub" style="max-width: 50ch; color: var(--wise-muted);">WiseOS läser handskrivna elevsvar, verifierar matematiken, tillämpar lärardefinierade rättningsregler och genererar tydlig pedagogisk feedback.</p>
+        <div class="hero-ctas" style="margin-bottom: 3.5rem;">
+          <a href="#pipeline" class="wiseos-cta">Utforska WiseOS</a>
+          <span class="eyebrow" style="margin-bottom: 0;">Pilot</span>
         </div>
-        <span class="eyebrow" style="font-size: 0.7rem; color: var(--wise-primary);">A NobleArc venture</span>
+        <span class="eyebrow" style="font-size: 0.7rem; color: var(--wise-primary);">EN NOBLEARC-VENTURE</span>
       </div>
     </section>
 
     <section class="section in-view" id="pipeline">
       <div class="container narrow">
-        <span class="eyebrow" style="display: block; color: var(--wise-primary);">The grading loop</span>
-        <h2 class="section-title" style="color: var(--wise-text);">From answer to feedback.</h2>
+        <span class="eyebrow" style="display: block; color: var(--wise-primary);">Så går det till</span>
+        <h2 class="section-title" style="color: var(--wise-text);">Från svar till feedback.</h2>
         <div class="pipeline" role="list">
           <div class="pipeline-step" role="listitem">
             <span class="num">1</span>
-            <h4>Student answer</h4>
-            <p>Handwritten or digital submission.</p>
+            <h4>Elevens svar</h4>
+            <p>Handskrivet eller digitalt inskick.</p>
           </div>
           <div class="pipeline-step" role="listitem">
             <span class="num">2</span>
             <h4>OCR</h4>
-            <p>Image → LaTeX and text.</p>
+            <p>Bild → LaTeX och text.</p>
           </div>
           <div class="pipeline-step" role="listitem">
             <span class="num">3</span>
-            <h4>Verification</h4>
-            <p>Mathematical equivalence check.</p>
+            <h4>Verifiering</h4>
+            <p>Kontroll av matematisk ekvivalens.</p>
           </div>
           <div class="pipeline-step" role="listitem">
             <span class="num">4</span>
-            <h4>Teacher rules</h4>
-            <p>Partial credit and unit handling.</p>
+            <h4>Lärarregler</h4>
+            <p>Delpoäng och enhetshantering.</p>
           </div>
           <div class="pipeline-step" role="listitem">
             <span class="num">5</span>
-            <h4>AI feedback</h4>
-            <p>Concise, pedagogical notes.</p>
+            <h4>AI-feedback</h4>
+            <p>Korta, pedagogiska anteckningar.</p>
           </div>
           <div class="pipeline-step" role="listitem">
             <span class="num">6</span>
-            <h4>Review</h4>
-            <p>Human-in-the-loop when needed.</p>
+            <h4>Granskning</h4>
+            <p>Mänsklig granskning när den behövs.</p>
           </div>
         </div>
       </div>
@@ -319,32 +321,32 @@
 
     <section class="section in-view" id="features" style="background: #fff;">
       <div class="container">
-        <span class="eyebrow" style="display: block; color: var(--wise-primary);">Capabilities</span>
-        <h2 class="section-title" style="color: var(--wise-text);">What WiseOS can do.</h2>
+        <span class="eyebrow" style="display: block; color: var(--wise-primary);">Funktioner</span>
+        <h2 class="section-title" style="color: var(--wise-text);">Vad WiseOS kan göra.</h2>
         <div class="feature-grid-wise">
           <article class="feature-wise">
-            <h3>Handwriting OCR</h3>
-            <p>Converts photographed student answers into structured LaTeX and text.</p>
+            <h3>OCR för handskrift</h3>
+            <p>Omvandlar fotograferade elevsvar till strukturerad LaTeX och text.</p>
           </article>
           <article class="feature-wise">
-            <h3>Math verification</h3>
-            <p>Checks equivalence against the correct answer, not just text matching.</p>
+            <h3>Matematisk verifiering</h3>
+            <p>Kontrollerar ekvivalens mot det rätta svaret, inte bara textmatchning.</p>
           </article>
           <article class="feature-wise">
-            <h3>Rule-based grading</h3>
-            <p>Applies the teacher's own rules for partial credit, units and rounding.</p>
+            <h3>Regelbaserad rättning</h3>
+            <p>Tillämpar lärarens egna regler för delpoäng, enheter och avrundning.</p>
           </article>
           <article class="feature-wise">
-            <h3>AI feedback</h3>
-            <p>Generates clear, pedagogical explanations for every result.</p>
+            <h3>AI-feedback</h3>
+            <p>Genererar tydliga, pedagogiska förklaringar för varje resultat.</p>
           </article>
           <article class="feature-wise">
-            <h3>Human review</h3>
-            <p>Low-confidence submissions are routed to the teacher for approval.</p>
+            <h3>Mänsklig granskning</h3>
+            <p>Osäkra inlämningsuppgifter skickas till läraren för godkännande.</p>
           </article>
           <article class="feature-wise">
-            <h3>Class management</h3>
-            <p>Assignments, submissions and class overview in one place.</p>
+            <h3>Klasshantering</h3>
+            <p>Uppgifter, inlämningar och klassöversikt på ett ställe.</p>
           </article>
         </div>
       </div>
@@ -352,29 +354,29 @@
 
     <section class="section in-view" id="showcase">
       <div class="container">
-        <span class="eyebrow" style="display: block; color: var(--wise-primary);">Safe preview</span>
-        <h2 class="section-title" style="color: var(--wise-text);">A quiet workbench for teachers.</h2>
-        <p class="section-lead" style="color: var(--wise-muted); max-width: 52ch; margin: 0 auto 2rem; text-align: center;">Synthetic demo states only. No real students, grades, assignments or data shown.</p>
+        <span class="eyebrow" style="display: block; color: var(--wise-primary);">Säker förhandsvisning</span>
+        <h2 class="section-title" style="color: var(--wise-text);">En lugn arbetsyta för lärare.</h2>
+        <p class="section-lead" style="color: var(--wise-muted); max-width: 52ch; margin: 0 auto 2rem; text-align: center;">Endast syntetiska demo-tillstånd. Inga riktiga elever, betyg, uppgifter eller data visas.</p>
         <div class="ui-showcase">
           <div class="ui-card">
-            <div class="ui-bar"><span>Student answer</span><span>Demo</span></div>
+            <div class="ui-bar"><span>Elevens svar</span><span>Demo</span></div>
             <div class="handwriting">x² − 4x + 3 = 0<br>x = 1, x = 3</div>
           </div>
           <div class="ui-card">
-            <div class="ui-bar"><span>OCR result</span><span>Demo</span></div>
-            <div class="ui-pill">LaTeX conversion</div>
+            <div class="ui-bar"><span>OCR-resultat</span><span>Demo</span></div>
+            <div class="ui-pill">LaTeX-konvertering</div>
             <p style="font-family: monospace; font-size: 0.85rem; color: var(--wise-secondary);">x^2 - 4x + 3 = 0</p>
           </div>
           <div class="ui-card">
-            <div class="ui-bar"><span>Grading result</span><span>Demo</span></div>
-            <div class="ui-row"><strong>Verdict</strong><span>Correct</span></div>
-            <div class="ui-row"><strong>Confidence</strong><span class="ui-score">High</span></div>
-            <div class="ui-row"><strong>Partial credit</strong><span>100%</span></div>
+            <div class="ui-bar"><span>Rättningsresultat</span><span>Demo</span></div>
+            <div class="ui-row"><strong>Bedömning</strong><span>Rätt</span></div>
+            <div class="ui-row"><strong>Säkerhet</strong><span class="ui-score">Hög</span></div>
+            <div class="ui-row"><strong>Delpoäng</strong><span>100%</span></div>
           </div>
           <div class="ui-card">
-            <div class="ui-bar"><span>Feedback</span><span>Demo</span></div>
-            <div class="ui-pill">AI generated</div>
-            <p style="font-size: 0.85rem; color: var(--wise-secondary); line-height: 1.5;">Both roots are correct. The factorization and use of the quadratic formula lead to x = 1 and x = 3.</p>
+            <div class="ui-bar"><span>Återkoppling</span><span>Demo</span></div>
+            <div class="ui-pill">AI-genererad</div>
+            <p style="font-size: 0.85rem; color: var(--wise-secondary); line-height: 1.5;">Båda rötterna är rätt. Faktoriseringen och användningen av pq-formeln ger x = 1 och x = 3.</p>
           </div>
         </div>
       </div>
@@ -383,35 +385,35 @@
     <section class="section in-view private-section theme-wiseos" id="private" data-private-code="wiseos">
       <div class="private-content">
         <div class="container narrow" style="padding-top: 6rem; padding-bottom: 6rem;">
-          <span class="eyebrow" style="display: block; color: var(--wise-primary);">Product intelligence</span>
-          <h2 class="section-title" style="color: var(--wise-text);">What the pilot is learning.</h2>
-          <p class="section-lead" style="color: var(--wise-muted); text-align: center; margin: 0 auto 2rem; max-width: 48ch;">Confidence scoring, batch pipelines, conditional automation and the teacher review workbench are reserved for authorized viewers.</p>
+          <span class="eyebrow" style="display: block; color: var(--wise-primary);">Produktinformation</span>
+          <h2 class="section-title" style="color: var(--wise-text);">Vad piloten lär sig.</h2>
+          <p class="section-lead" style="color: var(--wise-muted); text-align: center; margin: 0 auto 2rem; max-width: 48ch;">Säkerhetsnivåer, batch-körningar, villkorsstyrd automatisering och lärarens granskningsvy är reserverade för auktoriserade användare.</p>
           <div class="ui-showcase">
             <div class="ui-card">
-              <div class="ui-bar"><span>Review queue</span><span>Private</span></div>
-              <div class="ui-pill">Human-in-the-loop</div>
-              <div class="ui-row"><strong>Submissions</strong><span>12</span></div>
-              <div class="ui-row"><strong>Needs review</strong><span>3</span></div>
+              <div class="ui-bar"><span>Granskningskö</span><span>Privat</span></div>
+              <div class="ui-pill">Människa i loopen</div>
+              <div class="ui-row"><strong>Inlämningar</strong><span>12</span></div>
+              <div class="ui-row"><strong>Behöver granskas</strong><span>3</span></div>
             </div>
             <div class="ui-card">
-              <div class="ui-bar"><span>Confidence</span><span>Private</span></div>
-              <div class="ui-pill">Conditional automation</div>
-              <div class="ui-row"><strong>High confidence</strong><span>9</span></div>
-              <div class="ui-row"><strong>Flagged</strong><span>3</span></div>
+              <div class="ui-bar"><span>Säkerhet</span><span>Privat</span></div>
+              <div class="ui-pill">Villkorsstyrd automatisering</div>
+              <div class="ui-row"><strong>Hög säkerhet</strong><span>9</span></div>
+              <div class="ui-row"><strong>Flaggat</strong><span>3</span></div>
             </div>
           </div>
         </div>
       </div>
       <div class="private-overlay">
         <div class="private-glass">
-          <span class="eyebrow" style="color: var(--wise-primary);">Private</span>
+          <span class="eyebrow" style="color: var(--wise-primary);">Privat</span>
           <h3 style="color: var(--wise-text);">NobleArc / WISEOS</h3>
-          <p>This product is currently in pilot. Selected product details are available to authorized viewers.</p>
+          <p>Denna produkt är för närvarande i pilot. Utvalda produktdetaljer är tillgängliga för auktoriserade användare.</p>
           <form class="private-gate-form" onsubmit="return false;" novalidate>
-            <input type="text" aria-label="Access code" placeholder="Enter access code" autocomplete="off" />
-            <button type="submit">Unlock →</button>
+            <input type="text" aria-label="Åtkomstkod" placeholder="Ange åtkomstkod" autocomplete="off" />
+            <button type="submit">Lås upp →</button>
           </form>
-          <div class="private-hint">Enter access code</div>
+          <div class="private-hint">Ange åtkomstkod</div>
         </div>
       </div>
     </section>
@@ -422,21 +424,21 @@
       <div class="footer-top">
         <div class="footer-brand">
           <strong>NOBLEARC</strong>
-          <p>Building what comes next.</p>
+          <p>Bygger det som kommer härnäst.</p>
         </div>
         <ul class="footer-links">
-          <li><a href="../../index.html#ventures">Ventures</a></li>
+          <li><a href="../../index.html#ventures">Satsningar</a></li>
           <li><a href="../../index.html#lab">Lab</a></li>
-          <li><a href="../../index.html#journal">Ideas</a></li>
-          <li><a href="../../index.html#about">About</a></li>
-          <li><a href="../../index.html#contact">Contact</a></li>
+          <li><a href="../../index.html#journal">Idéer</a></li>
+          <li><a href="../../index.html#about">Om</a></li>
+          <li><a href="../../index.html#contact">Kontakt</a></li>
         </ul>
       </div>
       <div class="footer-bottom">
         <p>© 2026 NobleArc</p>
         <div class="footer-legal">
-          <a href="#">Privacy</a>
-          <a href="#">Terms</a>
+          <a href="#">Integritet</a>
+          <a href="#">Villkor</a>
         </div>
       </div>
     </div>

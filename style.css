@@ -455,6 +455,16 @@ main.reveal {
 .contact-form input::placeholder,
 .contact-form textarea::placeholder { color: var(--muted); }
 .contact-form button { justify-self: start; cursor: pointer; }
+.form-status {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  min-height: 1.5rem;
+  color: var(--muted);
+  transition: color 0.2s;
+}
+.form-status.success { color: var(--gold); }
+.form-status.error { color: var(--copper); }
 
 /* Footer */
 .footer {

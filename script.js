@@ -56,15 +56,32 @@ document.addEventListener('DOMContentLoaded', () => {
     ).observe(arc);
   }
 
-  // Contact form → mailto
+  // Contact form → mailto (hosting är statisk; mailto är real fallback som öppnar användarens klient)
+  const formStatus = document.getElementById('form-status');
   if (form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
+      if (!form.checkValidity()) {
+        if (formStatus) {
+          formStatus.className = 'form-status error';
+          formStatus.textContent = 'Fyll i namn, e-post och meddelande.';
+        }
+        return;
+      }
       const fd = new FormData(form);
-      const subject = `Idea from ${fd.get('name') || 'someone'}`;
-      const body = `Name: ${fd.get('name')}\r\nEmail: ${fd.get('email')}\r\nWhat are you building?: ${fd.get('building')}\r\nMessage:\r\n${fd.get('message')}`;
-      window.location.href = `mailto:hello@noblearc.se?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      const name = fd.get('name') || 'okänd avsändare';
+      const email = fd.get('email') || '';
+      const building = fd.get('building') || '';
+      const message = fd.get('message') || '';
+      const subject = `Nytt meddelande från ${name}`;
+      const sent = new Date().toLocaleString('sv-SE');
+      const body = `Nytt meddelande från NobleArc-webbplatsen\r\n\r\nSkickat: ${sent}\r\n\r\nNamn: ${name}\r\nE-post: ${email}\r\nVad bygger du?: ${building}\r\n\r\nMeddelande:\r\n${message}`;
+      window.location.href = `mailto:suits@noblearc.se?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       form.reset();
+      if (formStatus) {
+        formStatus.className = 'form-status success';
+        formStatus.textContent = 'Tack för ditt meddelande. Vi återkommer så snart vi kan.';
+      }
     });
   }
 
@@ -84,13 +101,13 @@ document.addEventListener('DOMContentLoaded', () => {
       if (value === code.toLowerCase()) {
         section.classList.add('unlocked');
         if (hint) {
-          hint.textContent = 'Welcome in.';
+          hint.textContent = 'Åtkomst beviljad.';
           hint.classList.remove('denied');
           hint.classList.add('allowed');
         }
       } else {
         if (hint) {
-          hint.textContent = "That code doesn't match.";
+          hint.textContent = 'Koden stämmer inte.';
           hint.classList.remove('allowed');
           hint.classList.add('denied');
         }
