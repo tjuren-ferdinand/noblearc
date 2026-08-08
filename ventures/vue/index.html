@@ -3,15 +3,181 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VUE — Built by NobleArc</title>
-  <meta name="description" content="VUE by NobleArc. See the world differently." />
+  <title>VUE — Financial Autopilot | NobleArc</title>
+  <meta name="description" content="VUE by NobleArc. An AI-driven financial autopilot designed to make everyday money management feel effortless." />
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;family=Montserrat:wght@200&amp;display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../../style.css" />
+  <style>
+    :root {
+      --vue-teal: #65E7DE;
+      --vue-teal-soft: rgba(101, 231, 222, 0.12);
+      --vue-surface: rgba(39, 38, 45, 0.72);
+    }
+
+    .theme-vue { background: #000; }
+    .theme-vue .hero { padding-top: 8rem; }
+    .theme-vue .hero-title { color: #fff; }
+    .theme-vue .hero-sub { color: var(--muted); }
+    .theme-vue .eyebrow a,
+    .theme-vue .eyebrow { color: #7FF0E8; }
+    .theme-vue .eyebrow a:hover { color: #fff; }
+
+    .vue-wordmark {
+      max-width: 240px;
+      height: auto;
+      margin-bottom: 1.5rem;
+    }
+
+    .vue-cta {
+      display: inline-block;
+      padding: 0.8rem 1.6rem;
+      border-radius: 999px;
+      background: var(--vue-teal);
+      color: #000;
+      font-weight: 500;
+      font-size: 0.85rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .vue-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(101, 231, 222, 0.3);
+    }
+
+    .step-flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      margin: 2rem 0;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+    .step-flow span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .step-flow .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--vue-teal);
+    }
+
+    .feature-track {
+      display: flex;
+      gap: 1.25rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 0.5rem 0 1.5rem;
+      margin-top: 2rem;
+    }
+    .feature-card {
+      flex: 0 0 260px;
+      scroll-snap-align: start;
+      background: var(--vue-surface);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 1.5rem;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      transition: transform 0.25s, border-color 0.25s;
+    }
+    .feature-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--vue-teal);
+    }
+    .feature-card .num {
+      font-size: 0.75rem;
+      color: var(--vue-teal);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+    .feature-card h3 {
+      font-size: 1.15rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      color: #fff;
+    }
+    .feature-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
+
+    .ui-showcase {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2.5rem;
+    }
+    .ui-card {
+      background: var(--vue-surface);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      padding: 1.5rem;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      min-height: 220px;
+    }
+    .ui-card .ui-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .ui-card .ui-pill {
+      display: inline-block;
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(101, 231, 222, 0.12);
+      color: var(--vue-teal);
+      font-size: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .ui-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+    .ui-row:last-child { border: none; }
+    .ui-row strong { color: #fff; font-weight: 400; }
+    .ui-chat {
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 16px;
+      padding: 1rem;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.75);
+    }
+    .ui-chat p { margin-bottom: 0.5rem; }
+    .ui-chat .bubble {
+      display: inline-block;
+      padding: 0.5rem 0.75rem;
+      border-radius: 12px;
+      background: rgba(101, 231, 222, 0.15);
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+
+    .private-section.theme-vue .private-overlay { background: rgba(0, 0, 0, 0.45); }
+    .private-section.theme-vue .private-glass { border-color: rgba(101, 231, 222, 0.15); }
+    .private-section.theme-vue .private-hint.allowed { color: var(--vue-teal); }
+
+    @media (max-width: 768px) {
+      .vue-wordmark { max-width: 180px; }
+      .feature-track { scroll-snap-type: x mandatory; }
+      .ui-showcase { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
-<body class="loaded">
+<body class="loaded theme-vue">
   <nav class="nav" id="nav" aria-label="Primary">
     <div class="nav-inner">
       <a class="nav-logo" href="../../index.html">NobleArc</a>
@@ -27,13 +193,137 @@
   </nav>
 
   <main class="reveal">
-    <section class="section in-view hero">
+    <section class="section in-view hero" id="hero">
       <div class="container">
         <p class="eyebrow"><a href="../../index.html#ventures">← NobleArc</a></p>
-        <h1 class="hero-title">VUE</h1>
-        <p class="hero-sub">See the world differently.</p>
-        <p class="section-lead">Built by NobleArc. VUE is exploring new ways to look at information, products and the world around us.</p>
-        <span class="eyebrow">Status: In development</span>
+        <img class="vue-wordmark" src="assets/vue-wordmark.jpg" alt="VUE" />
+        <h1 class="hero-title" style="font-size: clamp(2rem, 7vw, 4.5rem);">Slipp fakturakaos — få full kontroll direkt.</h1>
+        <p class="hero-sub" style="max-width: 50ch;">An AI-driven financial autopilot designed to make everyday money management feel effortless.</p>
+        <div class="hero-ctas" style="margin-bottom: 1.5rem;">
+          <a href="#autopilot" class="vue-cta">Explore VUE</a>
+          <span style="color: var(--muted); font-size: 0.85rem; align-self: center;">Pre-launch</span>
+        </div>
+        <span class="eyebrow" style="font-size: 0.7rem;">A NobleArc venture</span>
+      </div>
+    </section>
+
+    <section class="section in-view" id="autopilot" style="text-align: center;">
+      <div class="container narrow">
+        <span class="eyebrow">Your finances. On autopilot.</span>
+        <h2 class="section-title" style="color: #fff;">Observe. Assist. Optimize. Full Autopilot.</h2>
+        <div class="step-flow" style="justify-content: center;">
+          <span><span class="dot" style="background: #4DD0C7;"></span>Observe</span>
+          <span>→</span>
+          <span><span class="dot" style="background: #65E7DE;"></span>Assist</span>
+          <span>→</span>
+          <span><span class="dot" style="background: #7FF0E8;"></span>Optimize</span>
+          <span>→</span>
+          <span><span class="dot" style="background: #fff;"></span>Full Autopilot</span>
+        </div>
+        <p class="section-lead" style="margin: 0 auto; max-width: 48ch;">VUE starts by understanding your spending, then gradually takes on more of the work — always under your control.</p>
+      </div>
+    </section>
+
+    <section class="section in-view" id="features" style="padding-top: 4rem;">
+      <div class="container">
+        <span class="eyebrow" style="text-align: center; display: block;">Features</span>
+        <h2 class="section-title" style="text-align: center; color: #fff;">Six ways VUE makes money calmer.</h2>
+        <div class="feature-track" role="list">
+          <article class="feature-card" role="listitem">
+            <div class="num">01</div>
+            <h3>Autopilot</h3>
+            <p>Four levels of automation. You decide how much control to hand over.</p>
+          </article>
+          <article class="feature-card" role="listitem">
+            <div class="num">02</div>
+            <h3>Clarity</h3>
+            <p>Predictive financial intelligence that explains what matters, before it matters.</p>
+          </article>
+          <article class="feature-card" role="listitem">
+            <div class="num">03</div>
+            <h3>Smart Bills</h3>
+            <p>Invoice scanning and bill management that keeps track of what is due.</p>
+          </article>
+          <article class="feature-card" role="listitem">
+            <div class="num">04</div>
+            <h3>Price Watch</h3>
+            <p>Detects price increases and surfaces potential savings in your subscriptions.</p>
+          </article>
+          <article class="feature-card" role="listitem">
+            <div class="num">05</div>
+            <h3>VUE AI</h3>
+            <p>Ask financial questions in natural language and get plain answers.</p>
+          </article>
+          <article class="feature-card" role="listitem">
+            <div class="num">06</div>
+            <h3>Family</h3>
+            <p>Shared household finances with individual privacy and shared goals.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section in-view" id="showcase">
+      <div class="container">
+        <span class="eyebrow" style="text-align: center; display: block;">Safe preview</span>
+        <h2 class="section-title" style="text-align: center; color: #fff;">A calm dashboard for calm money.</h2>
+        <p class="section-lead" style="text-align: center; margin: 0 auto 2rem; max-width: 50ch;">Synthetic demo states only. No real accounts, balances or bank data shown.</p>
+        <div class="ui-showcase">
+          <div class="ui-card">
+            <div class="ui-bar"><span>Overview</span><span>Demo</span></div>
+            <div class="ui-pill">Clarity score 84</div>
+            <div class="ui-row"><strong>Remaining</strong><span>SEK 12 400</span></div>
+            <div class="ui-row"><strong>Bills</strong><span>SEK 4 200</span></div>
+            <div class="ui-row"><strong>Savings</strong><span>SEK 3 100</span></div>
+            <div class="ui-row"><strong>Insight</strong><span>On track</span></div>
+          </div>
+          <div class="ui-card">
+            <div class="ui-bar"><span>Price Watch</span><span>Demo</span></div>
+            <div class="ui-pill">3 changes</div>
+            <div class="ui-row"><strong>Streaming</strong><span>+ SEK 35</span></div>
+            <div class="ui-row"><strong>Broadband</strong><span>+ SEK 45</span></div>
+            <div class="ui-row"><strong>Gym</strong><span>No change</span></div>
+          </div>
+          <div class="ui-card">
+            <div class="ui-bar"><span>VUE AI</span><span>Demo</span></div>
+            <div class="ui-chat">
+              <p style="color: var(--muted);">How much can I spend this week?</p>
+              <span class="bubble">Based on upcoming bills, you have about SEK 1 800 left for daily spending.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section in-view private-section theme-vue" id="private" data-private-code="vue">
+      <div class="private-content">
+        <div class="container narrow" style="padding-top: 6rem; padding-bottom: 6rem;">
+          <span class="eyebrow" style="text-align: center; display: block; color: var(--vue-teal);">Product intelligence</span>
+          <h2 class="section-title" style="text-align: center; color: #fff;">What comes next.</h2>
+          <p class="section-lead" style="text-align: center; margin: 0 auto 2rem; max-width: 44ch;">The deeper product layer — architecture, provider integrations, roadmap and internal demonstrations — is reserved for authorized viewers.</p>
+          <div class="ui-showcase" style="margin-top: 2rem;">
+            <div class="ui-card" style="opacity: 0.6;">
+              <div class="ui-bar"><span>Autopilot levels</span><span>Private</span></div>
+              <div class="ui-pill">Observe → Assist → Optimize → Full</div>
+            </div>
+            <div class="ui-card" style="opacity: 0.6;">
+              <div class="ui-bar"><span>Provider stack</span><span>Private</span></div>
+              <div class="ui-pill">Open Banking · AI · Swedish payments</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="private-overlay">
+        <div class="private-glass">
+          <span class="eyebrow" style="color: var(--vue-teal);">Private</span>
+          <h3>NobleArc / VUE</h3>
+          <p>This venture is still being built. Selected product details are available to authorized viewers.</p>
+          <form class="private-gate-form" onsubmit="return false;" novalidate>
+            <input type="text" aria-label="Access code" placeholder="Enter access code" autocomplete="off" />
+            <button type="submit">Unlock →</button>
+          </form>
+          <div class="private-hint">Enter access code</div>
+        </div>
       </div>
     </section>
   </main>

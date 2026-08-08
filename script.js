@@ -67,4 +67,36 @@ document.addEventListener('DOMContentLoaded', () => {
       form.reset();
     });
   }
+
+  // PrivateAccessGate — demo access layer for venture detail pages
+  const privateSections = document.querySelectorAll('[data-private-code]');
+  privateSections.forEach((section) => {
+    const gate = section.querySelector('.private-gate-form');
+    if (!gate) return;
+    const input = gate.querySelector('input[type="text"]');
+    const hint = section.querySelector('.private-hint');
+    const code = section.dataset.privateCode;
+
+    gate.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!input) return;
+      const value = input.value.trim().toLowerCase();
+      if (value === code.toLowerCase()) {
+        section.classList.add('unlocked');
+        if (hint) {
+          hint.textContent = 'Welcome in.';
+          hint.classList.remove('denied');
+          hint.classList.add('allowed');
+        }
+      } else {
+        if (hint) {
+          hint.textContent = "That code doesn't match.";
+          hint.classList.remove('allowed');
+          hint.classList.add('denied');
+        }
+        input.value = '';
+        input.focus();
+      }
+    });
+  });
 });

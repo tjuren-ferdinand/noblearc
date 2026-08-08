@@ -364,6 +364,13 @@ main.reveal {
   letter-spacing: 0.12em;
   margin-bottom: 1rem;
 }
+.venture-num {
+  color: var(--muted);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
 
 /* Why */
 .principle {
@@ -510,4 +517,127 @@ main.reveal {
   .venture-grid { grid-template-columns: 1fr; }
   .section-header { flex-direction: column; align-items: flex-start; }
   .traits { gap: 1rem; }
+}
+
+/* Venture identity cards — kept minimal to preserve existing grid */
+.venture-card.vue {
+  --venture-accent: #65E7DE;
+  --venture-glow: rgba(101, 231, 222, 0.12);
+}
+.venture-card.wiseos {
+  --venture-accent: #9B5A97;
+  --venture-glow: rgba(155, 90, 151, 0.12);
+}
+.venture-card.vue .venture-status,
+.venture-card.wiseos .venture-status { color: var(--venture-accent); }
+.venture-card.vue:hover,
+.venture-card.wiseos:hover {
+  border-color: var(--venture-accent);
+  box-shadow: 0 18px 50px var(--venture-glow);
+}
+
+/* PrivateAccessGate — reusable lock experience */
+.private-section {
+  position: relative;
+  overflow: hidden;
+}
+.private-content {
+  transition: filter 0.6s ease, opacity 0.6s ease;
+  filter: blur(8px);
+  opacity: 0.45;
+}
+.private-section.unlocked .private-content {
+  filter: none;
+  opacity: 1;
+}
+.private-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 4%;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+  background: rgba(10, 10, 10, 0.35);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.private-section.unlocked .private-overlay {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.private-glass {
+  width: min(460px, 92%);
+  text-align: center;
+  padding: 2.5rem;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(13, 13, 13, 0.78);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+}
+.private-glass .eyebrow { margin-bottom: 0.75rem; }
+.private-glass h3 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 400;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+}
+.private-glass p {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+.private-gate-form {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.private-gate-form input {
+  width: 12rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  padding: 0.7rem 1rem;
+  color: var(--text);
+  font: inherit;
+  outline: none;
+  text-align: center;
+  transition: border-color 0.2s;
+}
+.private-gate-form input:focus { border-color: rgba(255, 255, 255, 0.25); }
+.private-gate-form button {
+  padding: 0.7rem 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+.private-gate-form button:hover {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+.private-hint {
+  min-height: 1.5rem;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  transition: color 0.2s;
+}
+.private-hint.allowed { color: #7FF0E8; }
+.private-hint.denied { color: #B87333; }
+
+/* Mobile private gate */
+@media (max-width: 768px) {
+  .private-glass { padding: 2rem 1.5rem; }
+  .private-gate-form { flex-direction: column; align-items: center; }
+  .private-gate-form input { width: 100%; }
 }

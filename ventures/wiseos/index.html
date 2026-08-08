@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WiseOS — AI Grading for STEM | NobleArc</title>
+  <meta name="description" content="WiseOS by NobleArc. An AI-powered grading assistant for STEM teachers that reads handwriting, verifies math and generates clear feedback." />
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;family=Caveat:wght@400&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../style.css" />
+  <style>
+    :root {
+      --wise-primary: #9B5A97;
+      --wise-hover: #8A4E87;
+      --wise-bg: #FAF9F7;
+      --wise-surface: #FFFFFF;
+      --wise-text: #1C1A1E;
+      --wise-muted: #8A858D;
+      --wise-secondary: #57525A;
+      --wise-border: #E8E2EC;
+      --wise-glass: rgba(255, 255, 255, 0.72);
+    }
+
+    body.theme-wiseos {
+      background: var(--wise-bg);
+      color: var(--wise-text);
+    }
+    body.theme-wiseos a,
+    body.theme-wiseos .nav-logo,
+    body.theme-wiseos .nav-links a,
+    body.theme-wiseos .hero-title,
+    body.theme-wiseos .section-title,
+    body.theme-wiseos h3 {
+      color: var(--wise-text);
+    }
+    body.theme-wiseos .nav-links a:hover { color: var(--wise-primary); }
+    body.theme-wiseos .nav-scrolled {
+      background: rgba(250, 249, 247, 0.82);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    body.theme-wiseos .nav-toggle span { background: var(--wise-text); }
+    body.theme-wiseos .eyebrow,
+    body.theme-wiseos .section-lead,
+    body.theme-wiseos .hero-sub,
+    body.theme-wiseos .footer-links a,
+    body.theme-wiseos .footer-legal a,
+    body.theme-wiseos .footer-brand p,
+    body.theme-wiseos .footer-bottom {
+      color: var(--wise-muted);
+    }
+    body.theme-wiseos .footer { border-color: var(--wise-border); }
+    body.theme-wiseos .footer-links a:hover,
+    body.theme-wiseos .footer-legal a:hover { color: var(--wise-text); }
+    body.theme-wiseos .nav-cta {
+      color: var(--wise-text) !important;
+      border-color: var(--wise-border);
+    }
+    body.theme-wiseos .nav-cta:hover {
+      background: rgba(155, 90, 151, 0.05);
+      border-color: var(--wise-primary);
+    }
+
+    .wiseos-wordmark {
+      max-width: 240px;
+      height: auto;
+      margin-bottom: 1.5rem;
+    }
+
+    .wiseos-cta {
+      display: inline-block;
+      padding: 0.8rem 1.6rem;
+      border-radius: 999px;
+      background: var(--wise-primary);
+      color: #fff;
+      font-weight: 500;
+      font-size: 0.85rem;
+      transition: transform 0.2s, background 0.2s;
+    }
+    .wiseos-cta:hover {
+      transform: translateY(-2px);
+      background: var(--wise-hover);
+    }
+
+    .pipeline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+    .pipeline-step {
+      background: var(--wise-surface);
+      border: 1px solid var(--wise-border);
+      border-radius: 16px;
+      padding: 1.25rem;
+      text-align: center;
+      box-shadow: 0 4px 24px rgba(28, 26, 30, 0.04);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .pipeline-step:hover {
+      transform: translateY(-3px);
+      border-color: var(--wise-primary);
+    }
+    .pipeline-step .num {
+      display: inline-block;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(155, 90, 151, 0.1);
+      color: var(--wise-primary);
+      font-size: 0.75rem;
+      line-height: 28px;
+      margin-bottom: 0.75rem;
+    }
+    .pipeline-step h4 {
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-bottom: 0.35rem;
+      color: var(--wise-text);
+    }
+    .pipeline-step p { font-size: 0.8rem; color: var(--wise-muted); }
+
+    .feature-grid-wise {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+    .feature-wise {
+      background: var(--wise-surface);
+      border: 1px solid var(--wise-border);
+      border-radius: 18px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 24px rgba(28, 26, 30, 0.04);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .feature-wise:hover { transform: translateY(-3px); border-color: var(--wise-primary); }
+    .feature-wise h3 {
+      font-size: 1.05rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    .feature-wise p { font-size: 0.9rem; color: var(--wise-muted); line-height: 1.5; }
+
+    .ui-showcase {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2.5rem;
+    }
+    .ui-card {
+      background: var(--wise-surface);
+      border: 1px solid var(--wise-border);
+      border-radius: 20px;
+      padding: 1.5rem;
+      box-shadow: 0 6px 30px rgba(28, 26, 30, 0.04);
+      min-height: 230px;
+    }
+    .ui-card .ui-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      font-size: 0.75rem;
+      color: var(--wise-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .ui-card .ui-pill {
+      display: inline-block;
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(155, 90, 151, 0.1);
+      color: var(--wise-primary);
+      font-size: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .ui-card .handwriting {
+      font-family: 'Caveat', cursive;
+      font-size: 1.1rem;
+      color: var(--wise-text);
+      background: #fff;
+      border: 1px solid var(--wise-border);
+      border-radius: 12px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    .ui-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.55rem 0;
+      border-bottom: 1px solid var(--wise-border);
+      font-size: 0.85rem;
+      color: var(--wise-secondary);
+    }
+    .ui-row:last-child { border: none; }
+    .ui-row strong { color: var(--wise-text); font-weight: 500; }
+    .ui-score {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(45, 138, 95, 0.1);
+      color: #2D8A5F;
+      font-size: 0.8rem;
+    }
+
+    .private-section.theme-wiseos .private-overlay { background: rgba(250, 249, 247, 0.45); }
+    .private-section.theme-wiseos .private-glass {
+      background: var(--wise-glass);
+      border-color: var(--wise-border);
+      color: var(--wise-text);
+      box-shadow: 0 30px 80px rgba(28, 26, 30, 0.08);
+    }
+    .private-section.theme-wiseos .private-glass p,
+    .private-section.theme-wiseos .private-hint,
+    .private-section.theme-wiseos .private-glass .eyebrow {
+      color: var(--wise-muted);
+    }
+    .private-section.theme-wiseos .private-gate-form input {
+      background: rgba(255, 255, 255, 0.9);
+      border-color: var(--wise-border);
+      color: var(--wise-text);
+    }
+    .private-section.theme-wiseos .private-gate-form input:focus { border-color: var(--wise-primary); }
+    .private-section.theme-wiseos .private-gate-form button {
+      background: var(--wise-primary);
+      color: #fff;
+      border-color: var(--wise-primary);
+    }
+    .private-section.theme-wiseos .private-gate-form button:hover { background: var(--wise-hover); }
+    .private-section.theme-wiseos .private-hint.allowed { color: #2D8A5F; }
+    .private-section.theme-wiseos .private-hint.denied { color: #B8860B; }
+    .private-section.theme-wiseos .private-content .ui-card { opacity: 0.6; }
+
+    @media (max-width: 768px) {
+      .wiseos-wordmark { max-width: 180px; }
+      .pipeline { grid-template-columns: 1fr; }
+      .ui-showcase { grid-template-columns: 1fr; }
+      body.theme-wiseos .nav-links {
+        background: var(--wise-surface) !important;
+        color: var(--wise-text);
+      }
+      body.theme-wiseos .nav-links a { color: var(--wise-text) !important; }
+    }
+  </style>
+</head>
+<body class="loaded theme-wiseos">
+  <nav class="nav" id="nav" aria-label="Primary">
+    <div class="nav-inner">
+      <a class="nav-logo" href="../../index.html">NobleArc</a>
+      <button class="nav-toggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+      <ul class="nav-links">
+        <li><a href="../../index.html#ventures">Ventures</a></li>
+        <li><a href="../../index.html#lab">Lab</a></li>
+        <li><a href="../../index.html#journal">Ideas</a></li>
+        <li><a href="../../index.html#about">About</a></li>
+        <li><a class="nav-cta" href="../../index.html#contact">Start a conversation</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="reveal">
+    <section class="section in-view hero" id="hero" style="padding-top: 8rem;">
+      <div class="container">
+        <p class="eyebrow"><a href="../../index.html#ventures">← NobleArc</a></p>
+        <img class="wiseos-wordmark" src="assets/wiseos-wordmark.png" alt="WiseOS" />
+        <h1 class="hero-title" style="color: var(--wise-text); font-size: clamp(2rem, 7vw, 4.5rem);">AI-driven rättning för STEM.</h1>
+        <p class="hero-sub" style="max-width: 52ch; color: var(--wise-muted);">WiseOS reads handwritten student answers, verifies the mathematics, applies teacher-defined grading rules and generates clear pedagogical feedback.</p>
+        <div class="hero-ctas" style="margin-bottom: 1.5rem;">
+          <a href="#pipeline" class="wiseos-cta">Explore WiseOS</a>
+          <span style="color: var(--wise-muted); font-size: 0.85rem; align-self: center;">Pilot</span>
+        </div>
+        <span class="eyebrow" style="font-size: 0.7rem; color: var(--wise-primary);">A NobleArc venture</span>
+      </div>
+    </section>
+
+    <section class="section in-view" id="pipeline">
+      <div class="container narrow">
+        <span class="eyebrow" style="display: block; color: var(--wise-primary);">The grading loop</span>
+        <h2 class="section-title" style="color: var(--wise-text);">From answer to feedback.</h2>
+        <div class="pipeline" role="list">
+          <div class="pipeline-step" role="listitem">
+            <span class="num">1</span>
+            <h4>Student answer</h4>
+            <p>Handwritten or digital submission.</p>
+          </div>
+          <div class="pipeline-step" role="listitem">
+            <span class="num">2</span>
+            <h4>OCR</h4>
+            <p>Image → LaTeX and text.</p>
+          </div>
+          <div class="pipeline-step" role="listitem">
+            <span class="num">3</span>
+            <h4>Verification</h4>
+            <p>Mathematical equivalence check.</p>
+          </div>
+          <div class="pipeline-step" role="listitem">
+            <span class="num">4</span>
+            <h4>Teacher rules</h4>
+            <p>Partial credit and unit handling.</p>
+          </div>
+          <div class="pipeline-step" role="listitem">
+            <span class="num">5</span>
+            <h4>AI feedback</h4>
+            <p>Concise, pedagogical notes.</p>
+          </div>
+          <div class="pipeline-step" role="listitem">
+            <span class="num">6</span>
+            <h4>Review</h4>
+            <p>Human-in-the-loop when needed.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section in-view" id="features" style="background: #fff;">
+      <div class="container">
+        <span class="eyebrow" style="display: block; color: var(--wise-primary);">Capabilities</span>
+        <h2 class="section-title" style="color: var(--wise-text);">What WiseOS can do.</h2>
+        <div class="feature-grid-wise">
+          <article class="feature-wise">
+            <h3>Handwriting OCR</h3>
+            <p>Converts photographed student answers into structured LaTeX and text.</p>
+          </article>
+          <article class="feature-wise">
+            <h3>Math verification</h3>
+            <p>Checks equivalence against the correct answer, not just text matching.</p>
+          </article>
+          <article class="feature-wise">
+            <h3>Rule-based grading</h3>
+            <p>Applies the teacher's own rules for partial credit, units and rounding.</p>
+          </article>
+          <article class="feature-wise">
+            <h3>AI feedback</h3>
+            <p>Generates clear, pedagogical explanations for every result.</p>
+          </article>
+          <article class="feature-wise">
+            <h3>Human review</h3>
+            <p>Low-confidence submissions are routed to the teacher for approval.</p>
+          </article>
+          <article class="feature-wise">
+            <h3>Class management</h3>
+            <p>Assignments, submissions and class overview in one place.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section in-view" id="showcase">
+      <div class="container">
+        <span class="eyebrow" style="display: block; color: var(--wise-primary);">Safe preview</span>
+        <h2 class="section-title" style="color: var(--wise-text);">A quiet workbench for teachers.</h2>
+        <p class="section-lead" style="color: var(--wise-muted); max-width: 52ch; margin: 0 auto 2rem; text-align: center;">Synthetic demo states only. No real students, grades, assignments or data shown.</p>
+        <div class="ui-showcase">
+          <div class="ui-card">
+            <div class="ui-bar"><span>Student answer</span><span>Demo</span></div>
+            <div class="handwriting">x² − 4x + 3 = 0<br>x = 1, x = 3</div>
+          </div>
+          <div class="ui-card">
+            <div class="ui-bar"><span>OCR result</span><span>Demo</span></div>
+            <div class="ui-pill">LaTeX conversion</div>
+            <p style="font-family: monospace; font-size: 0.85rem; color: var(--wise-secondary);">x^2 - 4x + 3 = 0</p>
+          </div>
+          <div class="ui-card">
+            <div class="ui-bar"><span>Grading result</span><span>Demo</span></div>
+            <div class="ui-row"><strong>Verdict</strong><span>Correct</span></div>
+            <div class="ui-row"><strong>Confidence</strong><span class="ui-score">High</span></div>
+            <div class="ui-row"><strong>Partial credit</strong><span>100%</span></div>
+          </div>
+          <div class="ui-card">
+            <div class="ui-bar"><span>Feedback</span><span>Demo</span></div>
+            <div class="ui-pill">AI generated</div>
+            <p style="font-size: 0.85rem; color: var(--wise-secondary); line-height: 1.5;">Both roots are correct. The factorization and use of the quadratic formula lead to x = 1 and x = 3.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section in-view private-section theme-wiseos" id="private" data-private-code="wiseos">
+      <div class="private-content">
+        <div class="container narrow" style="padding-top: 6rem; padding-bottom: 6rem;">
+          <span class="eyebrow" style="display: block; color: var(--wise-primary);">Product intelligence</span>
+          <h2 class="section-title" style="color: var(--wise-text);">What the pilot is learning.</h2>
+          <p class="section-lead" style="color: var(--wise-muted); text-align: center; margin: 0 auto 2rem; max-width: 48ch;">Confidence scoring, batch pipelines, conditional automation and the teacher review workbench are reserved for authorized viewers.</p>
+          <div class="ui-showcase">
+            <div class="ui-card">
+              <div class="ui-bar"><span>Review queue</span><span>Private</span></div>
+              <div class="ui-pill">Human-in-the-loop</div>
+              <div class="ui-row"><strong>Submissions</strong><span>12</span></div>
+              <div class="ui-row"><strong>Needs review</strong><span>3</span></div>
+            </div>
+            <div class="ui-card">
+              <div class="ui-bar"><span>Confidence</span><span>Private</span></div>
+              <div class="ui-pill">Conditional automation</div>
+              <div class="ui-row"><strong>High confidence</strong><span>9</span></div>
+              <div class="ui-row"><strong>Flagged</strong><span>3</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="private-overlay">
+        <div class="private-glass">
+          <span class="eyebrow" style="color: var(--wise-primary);">Private</span>
+          <h3 style="color: var(--wise-text);">NobleArc / WISEOS</h3>
+          <p>This product is currently in pilot. Selected product details are available to authorized viewers.</p>
+          <form class="private-gate-form" onsubmit="return false;" novalidate>
+            <input type="text" aria-label="Access code" placeholder="Enter access code" autocomplete="off" />
+            <button type="submit">Unlock →</button>
+          </form>
+          <div class="private-hint">Enter access code</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <strong>NOBLEARC</strong>
+          <p>Building what comes next.</p>
+        </div>
+        <ul class="footer-links">
+          <li><a href="../../index.html#ventures">Ventures</a></li>
+          <li><a href="../../index.html#lab">Lab</a></li>
+          <li><a href="../../index.html#journal">Ideas</a></li>
+          <li><a href="../../index.html#about">About</a></li>
+          <li><a href="../../index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 NobleArc</p>
+        <div class="footer-legal">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../script.js"></script>
+</body>
+</html>
