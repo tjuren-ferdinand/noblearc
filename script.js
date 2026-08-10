@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
   privateSections.forEach((section) => {
     const gate = section.querySelector('.private-gate-form');
     if (!gate) return;
-    const input = gate.querySelector('input[type="text"]');
+    const input = gate.querySelector('input[type="password"], input[type="text"]');
     const hint = section.querySelector('.private-hint');
     const code = section.dataset.privateCode;
 
