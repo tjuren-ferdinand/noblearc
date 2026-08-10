@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../../style.css" />
+  <link rel="stylesheet" href="../../style.css?v=3" />
   <style>
     :root {
       --vue-teal: #65E7DE;
@@ -185,7 +185,7 @@
     body.theme-vue .product-stage .stage-hint { color: var(--muted); }
   </style>
 </head>
-<body class="loaded theme-vue">
+<body class="loaded theme-vue fullpage-locked">
   <nav class="nav" id="nav" aria-label="Primary">
     <div class="nav-inner">
       <a class="nav-logo" href="../../index.html">NobleArc</a>
@@ -351,34 +351,20 @@
       </div>
     </section>
 
-    <section class="section in-view private-section theme-vue" id="private" data-private-code="vue">
-      <div class="private-content">
-        <div class="container narrow" style="padding-top: 6rem; padding-bottom: 6rem;">
-          <span class="eyebrow" style="text-align: center; display: block; color: var(--vue-teal);">Produktinformation</span>
-          <h2 class="section-title" style="text-align: center; color: #fff;">Vad som kommer härnäst.</h2>
-          <p class="section-lead" style="text-align: center; margin: 0 auto 2rem; max-width: 44ch;">Det djupare produktlagret — arkitektur, provider-integreringar, roadmap och interna demonstrationer — är reserverat för auktoriserade användare.</p>
-          <div class="ui-showcase" style="margin-top: 2rem;">
-            <div class="ui-card" style="opacity: 0.6;">
-              <div class="ui-bar"><span>Autopilotnivåer</span><span>Privat</span></div>
-              <div class="ui-pill">Observera → Assistera → Optimera → Full</div>
-            </div>
-            <div class="ui-card" style="opacity: 0.6;">
-              <div class="ui-bar"><span>Provider-stack</span><span>Privat</span></div>
-              <div class="ui-pill">Open Banking · AI · Svenska betalningar</div>
-            </div>
+    <section class="section in-view" id="private">
+      <div class="container narrow" style="padding-top: 6rem; padding-bottom: 6rem;">
+        <span class="eyebrow" style="text-align: center; display: block; color: var(--vue-teal);">Produktinformation</span>
+        <h2 class="section-title" style="text-align: center; color: #fff;">Vad som kommer härnäst.</h2>
+        <p class="section-lead" style="text-align: center; margin: 0 auto 2rem; max-width: 44ch;">Det djupare produktlagret — arkitektur, provider-integreringar, roadmap och interna demonstrationer — är reserverat för auktoriserade användare.</p>
+        <div class="ui-showcase" style="margin-top: 2rem;">
+          <div class="ui-card" style="opacity: 0.6;">
+            <div class="ui-bar"><span>Autopilotnivåer</span><span>Privat</span></div>
+            <div class="ui-pill">Observera → Assistera → Optimera → Full</div>
           </div>
-        </div>
-      </div>
-      <div class="private-overlay">
-        <div class="private-glass">
-          <span class="eyebrow" style="color: var(--vue-teal);">Privat</span>
-          <h3>NobleArc / VUE</h3>
-          <p>Denna satsning byggs fortfarande. Utvalda produktdetaljer är tillgängliga för auktoriserade användare.</p>
-          <form class="private-gate-form" onsubmit="return false;" novalidate>
-            <input type="text" aria-label="Åtkomstkod" placeholder="Ange åtkomstkod" autocomplete="off" />
-            <button type="submit">Lås upp →</button>
-          </form>
-          <div class="private-hint">Ange åtkomstkod</div>
+          <div class="ui-card" style="opacity: 0.6;">
+            <div class="ui-bar"><span>Provider-stack</span><span>Privat</span></div>
+            <div class="ui-pill">Open Banking · AI · Svenska betalningar</div>
+          </div>
         </div>
       </div>
     </section>
@@ -409,6 +395,21 @@
     </div>
   </footer>
 
-  <script src="../../script.js"></script>
+  <div class="private-section full-page" data-private-code="0101" aria-hidden="false">
+    <div class="private-overlay">
+      <div class="private-glass">
+        <span class="eyebrow" style="color: var(--vue-teal);">Låst sida</span>
+        <h3 style="color: #fff;">Ange kod</h3>
+        <p>För att se sidan behöver du fylla i koden.</p>
+        <form class="private-gate-form" onsubmit="return false;" novalidate>
+          <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="4" aria-label="Åtkomstkod" placeholder="0101" autocomplete="off" />
+          <button type="submit">Lås upp →</button>
+        </form>
+        <div class="private-hint">Koden är 0101.</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../script.js?v=3"></script>
 </body>
 </html>

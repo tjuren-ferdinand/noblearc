@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;family=Caveat:wght@400&amp;display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../../style.css?v=2" />
+  <link rel="stylesheet" href="../../style.css?v=3" />
   <style>
     :root {
       --wise-primary: #9B5A97;
@@ -259,9 +259,23 @@
     body.theme-wiseos .product-stage .stage-hint { color: var(--wise-muted); }
     body.theme-wiseos .product-stage .stage-progress span { background: rgba(28, 26, 30, 0.15); }
     body.theme-wiseos .product-stage .stage-progress span.active { background: var(--wise-text); }
+    body.theme-wiseos .private-section.full-page .private-overlay { background: rgba(250, 249, 247, 0.85); }
+    body.theme-wiseos .private-section.full-page .private-glass {
+      background: var(--wise-glass);
+      border-color: var(--wise-border);
+      color: var(--wise-text);
+    }
+    body.theme-wiseos .private-section.full-page .private-glass p,
+    body.theme-wiseos .private-section.full-page .private-hint { color: var(--wise-muted); }
+    body.theme-wiseos .private-section.full-page .private-gate-form input {
+      background: rgba(28, 26, 30, 0.04);
+      border-color: rgba(28, 26, 30, 0.1);
+      color: var(--wise-text);
+    }
+    body.theme-wiseos .private-section.full-page .private-gate-form button { color: var(--wise-text); }
   </style>
 </head>
-<body class="loaded theme-wiseos">
+<body class="loaded theme-wiseos fullpage-locked">
   <nav class="nav" id="nav" aria-label="Primary">
     <div class="nav-inner">
       <a class="nav-logo" href="../../index.html">NobleArc</a>
@@ -431,38 +445,24 @@
       </div>
     </section>
 
-    <section class="section in-view private-section theme-wiseos" id="private" data-private-code="wiseos">
-      <div class="private-content">
-        <div class="container narrow" style="padding-top: 6rem; padding-bottom: 6rem;">
-          <span class="eyebrow" style="display: block; color: var(--wise-primary);">Produktinformation</span>
-          <h2 class="section-title" style="color: var(--wise-text);">Vad piloten lär sig.</h2>
-          <p class="section-lead" style="color: var(--wise-muted); text-align: center; margin: 0 auto 2rem; max-width: 48ch;">Säkerhetsnivåer, batch-körningar, villkorsstyrd automatisering och lärarens granskningsvy är reserverade för auktoriserade användare.</p>
-          <div class="ui-showcase">
-            <div class="ui-card">
-              <div class="ui-bar"><span>Granskningskö</span><span>Privat</span></div>
-              <div class="ui-pill">Människa i loopen</div>
-              <div class="ui-row"><strong>Inlämningar</strong><span>12</span></div>
-              <div class="ui-row"><strong>Behöver granskas</strong><span>3</span></div>
-            </div>
-            <div class="ui-card">
-              <div class="ui-bar"><span>Säkerhet</span><span>Privat</span></div>
-              <div class="ui-pill">Villkorsstyrd automatisering</div>
-              <div class="ui-row"><strong>Hög säkerhet</strong><span>9</span></div>
-              <div class="ui-row"><strong>Flaggat</strong><span>3</span></div>
-            </div>
+    <section class="section in-view" id="private">
+      <div class="container narrow" style="padding-top: 6rem; padding-bottom: 6rem;">
+        <span class="eyebrow" style="display: block; color: var(--wise-primary);">Produktinformation</span>
+        <h2 class="section-title" style="color: var(--wise-text);">Vad piloten lär sig.</h2>
+        <p class="section-lead" style="color: var(--wise-muted); text-align: center; margin: 0 auto 2rem; max-width: 48ch;">Säkerhetsnivåer, batch-körningar, villkorsstyrd automatisering och lärarens granskningsvy är reserverade för auktoriserade användare.</p>
+        <div class="ui-showcase">
+          <div class="ui-card">
+            <div class="ui-bar"><span>Granskningskö</span><span>Privat</span></div>
+            <div class="ui-pill">Människa i loopen</div>
+            <div class="ui-row"><strong>Inlämningar</strong><span>12</span></div>
+            <div class="ui-row"><strong>Behöver granskas</strong><span>3</span></div>
           </div>
-        </div>
-      </div>
-      <div class="private-overlay">
-        <div class="private-glass">
-          <span class="eyebrow" style="color: var(--wise-primary);">Privat</span>
-          <h3 style="color: var(--wise-text);">NobleArc / WISEOS</h3>
-          <p>Denna produkt är för närvarande i pilot. Utvalda produktdetaljer är tillgängliga för auktoriserade användare.</p>
-          <form class="private-gate-form" onsubmit="return false;" novalidate>
-            <input type="text" aria-label="Åtkomstkod" placeholder="Ange åtkomstkod" autocomplete="off" />
-            <button type="submit">Lås upp →</button>
-          </form>
-          <div class="private-hint">Ange åtkomstkod</div>
+          <div class="ui-card">
+            <div class="ui-bar"><span>Säkerhet</span><span>Privat</span></div>
+            <div class="ui-pill">Villkorsstyrd automatisering</div>
+            <div class="ui-row"><strong>Hög säkerhet</strong><span>9</span></div>
+            <div class="ui-row"><strong>Flaggat</strong><span>3</span></div>
+          </div>
         </div>
       </div>
     </section>
@@ -493,6 +493,21 @@
     </div>
   </footer>
 
-  <script src="../../script.js"></script>
+  <div class="private-section full-page" data-private-code="0101" aria-hidden="false">
+    <div class="private-overlay">
+      <div class="private-glass">
+        <span class="eyebrow" style="color: var(--wise-primary);">Låst sida</span>
+        <h3 style="color: var(--wise-text);">Ange kod</h3>
+        <p style="color: var(--wise-muted);">För att se sidan behöver du fylla i koden.</p>
+        <form class="private-gate-form" onsubmit="return false;" novalidate>
+          <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="4" aria-label="Åtkomstkod" placeholder="0101" autocomplete="off" />
+          <button type="submit">Lås upp →</button>
+        </form>
+        <div class="private-hint">Koden är 0101.</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../script.js?v=3"></script>
 </body>
 </html>

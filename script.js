@@ -123,12 +123,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const hint = section.querySelector('.private-hint');
     const code = section.dataset.privateCode;
 
+    if (section.classList.contains('full-page')) {
+      setTimeout(() => section.classList.add('reveal'), 1200);
+    }
+
     gate.addEventListener('submit', (e) => {
       e.preventDefault();
       if (!input) return;
       const value = input.value.trim().toLowerCase();
       if (value === code.toLowerCase()) {
         section.classList.add('unlocked');
+        if (section.classList.contains('full-page')) {
+          document.body.classList.remove('fullpage-locked');
+        }
         if (hint) {
           hint.textContent = 'Åtkomst beviljad.';
           hint.classList.remove('denied');
