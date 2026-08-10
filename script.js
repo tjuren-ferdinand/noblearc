@@ -124,7 +124,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const code = section.dataset.privateCode;
 
     if (section.classList.contains('full-page')) {
-      setTimeout(() => section.classList.add('reveal'), 1200);
+      const revealDelay = splash ? 2500 + 800 + 1000 : 1200;
+      setTimeout(() => section.classList.add('reveal'), revealDelay);
     }
 
     gate.addEventListener('submit', (e) => {

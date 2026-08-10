@@ -15,7 +15,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;family=Montserrat:wght@200&amp;display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css?v=3" />
 </head>
-<body class="splash-active">
+<body class="splash-active fullpage-locked">
 
   <nav class="nav" id="nav" aria-label="Primary">
     <div class="nav-inner">
@@ -238,6 +238,21 @@
       </div>
     </div>
   </footer>
+
+  <div class="private-section full-page" data-private-code="0101" aria-hidden="false">
+    <div class="private-overlay">
+      <div class="private-glass">
+        <span class="eyebrow">Låst sida</span>
+        <h3>Ange kod</h3>
+        <p>För att se sidan behöver du fylla i koden.</p>
+        <form class="private-gate-form" onsubmit="return false;" novalidate>
+          <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="4" aria-label="Åtkomstkod" placeholder="0101" autocomplete="off" />
+          <button type="submit">Lås upp →</button>
+        </form>
+        <div class="private-hint">Koden är 0101.</div>
+      </div>
+    </div>
+  </div>
 
   <script src="script.js?v=3"></script>
 </body>
