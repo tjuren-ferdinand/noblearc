@@ -93,23 +93,23 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!form.checkValidity()) {
         if (formStatus) {
           formStatus.className = 'form-status error';
-          formStatus.textContent = 'Fyll i namn, e-post och meddelande.';
+          formStatus.textContent = 'Please fill in all required fields.';
         }
         return;
       }
       const fd = new FormData(form);
-      const name = fd.get('name') || 'okänd avsändare';
+      const name = fd.get('name') || 'Unknown sender';
       const email = fd.get('email') || '';
       const building = fd.get('building') || '';
       const message = fd.get('message') || '';
-      const subject = `Nytt meddelande från ${name}`;
-      const sent = new Date().toLocaleString('sv-SE');
-      const body = `Nytt meddelande från NobleArc-webbplatsen\r\n\r\nSkickat: ${sent}\r\n\r\nNamn: ${name}\r\nE-post: ${email}\r\nVad bygger du?: ${building}\r\n\r\nMeddelande:\r\n${message}`;
+      const subject = `New message from ${name}`;
+      const sent = new Date().toLocaleString('en-US');
+      const body = `New message from the NobleArc website\r\n\r\nSent: ${sent}\r\n\r\nName: ${name}\r\nEmail: ${email}\r\nWhat are you building?: ${building}\r\n\r\nMessage:\r\n${message}`;
       window.location.href = `mailto:suits@noblearc.se?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       form.reset();
       if (formStatus) {
         formStatus.className = 'form-status success';
-        formStatus.textContent = 'Tack för ditt meddelande. Vi återkommer så snart vi kan.';
+        formStatus.textContent = 'Thank you. We will be in touch soon.';
       }
     });
   }
@@ -138,13 +138,13 @@ document.addEventListener('DOMContentLoaded', () => {
           document.body.classList.remove('fullpage-locked');
         }
         if (hint) {
-          hint.textContent = 'Åtkomst beviljad.';
+          hint.textContent = 'Access granted.';
           hint.classList.remove('denied');
           hint.classList.add('allowed');
         }
       } else {
         if (hint) {
-          hint.textContent = 'Koden stämmer inte.';
+          hint.textContent = 'The code does not match.';
           hint.classList.remove('allowed');
           hint.classList.add('denied');
         }
