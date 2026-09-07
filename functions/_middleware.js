@@ -36,6 +36,9 @@ function gatePage(denied) {
 <meta name="robots" content="noindex, nofollow" />
 <title>NobleArc</title>
 <link rel="icon" type="image/png" href="/logo_noble.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Montserrat:wght@200&display=swap" rel="stylesheet" />
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -49,6 +52,44 @@ function gatePage(denied) {
     font-weight: 300;
     padding: 2rem 4%;
   }
+  .splash {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: #0a0a0a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+  }
+  .splash.fade-out { opacity: 0; visibility: hidden; pointer-events: none; }
+  .splash h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.5rem, 5vw, 3.5rem);
+    font-weight: 200;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-align: center;
+    white-space: nowrap;
+    padding: 0 1rem;
+    background: linear-gradient(90deg, #1a1a1a 0%, #b87333 25%, #d4af37 50%, #b87333 75%, #1a1a1a 100%);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: flow 3s linear infinite;
+  }
+  @keyframes flow {
+    0% { background-position: 100% 0; }
+    100% { background-position: -100% 0; }
+  }
+  .card {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s;
+  }
+  .card.show { opacity: 1; transform: none; }
   .card {
     width: min(460px, 92%);
     text-align: center;
@@ -104,17 +145,25 @@ function gatePage(denied) {
 </style>
 </head>
 <body>
-  <div class="card">
+  <div id="splash" class="splash"><h1>NOBLEARC</h1></div>
+  <div class="card" id="card">
     <img class="logo" src="/logo_noble.png" alt="NobleArc" />
     <span class="eyebrow">Locked page</span>
     <h1>Enter code</h1>
     <p>To view this page, enter the code.</p>
     <form method="post" action="">
-      <input type="password" name="code" inputmode="numeric" pattern="[0-9]*" maxlength="4" aria-label="Access code" placeholder="••••" autocomplete="off" autofocus />
+      <input id="code" type="password" name="code" inputmode="numeric" pattern="[0-9]*" maxlength="4" aria-label="Access code" placeholder="••••" autocomplete="off" />
       <button type="submit">Unlock →</button>
     </form>
     <div class="hint">${denied ? 'The code does not match.' : '&nbsp;'}</div>
   </div>
+  <script>
+    setTimeout(function () {
+      document.getElementById('splash').classList.add('fade-out');
+      document.getElementById('card').classList.add('show');
+      setTimeout(function () { document.getElementById('code').focus(); }, 900);
+    }, 2500);
+  </script>
 </body>
 </html>`;
 }
