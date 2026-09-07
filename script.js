@@ -113,44 +113,4 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-
-  // PrivateAccessGate — demo access layer for venture detail pages
-  const privateSections = document.querySelectorAll('[data-private-code]');
-  privateSections.forEach((section) => {
-    const gate = section.querySelector('.private-gate-form');
-    if (!gate) return;
-    const input = gate.querySelector('input[type="password"], input[type="text"]');
-    const hint = section.querySelector('.private-hint');
-    const code = section.dataset.privateCode;
-
-    if (section.classList.contains('full-page')) {
-      const revealDelay = splash ? 2500 + 800 + 1000 : 1200;
-      setTimeout(() => section.classList.add('reveal'), revealDelay);
-    }
-
-    gate.addEventListener('submit', (e) => {
-      e.preventDefault();
-      if (!input) return;
-      const value = input.value.trim().toLowerCase();
-      if (value === code.toLowerCase()) {
-        section.classList.add('unlocked');
-        if (section.classList.contains('full-page')) {
-          document.body.classList.remove('fullpage-locked');
-        }
-        if (hint) {
-          hint.textContent = 'Access granted.';
-          hint.classList.remove('denied');
-          hint.classList.add('allowed');
-        }
-      } else {
-        if (hint) {
-          hint.textContent = 'The code does not match.';
-          hint.classList.remove('allowed');
-          hint.classList.add('denied');
-        }
-        input.value = '';
-        input.focus();
-      }
-    });
-  });
 });

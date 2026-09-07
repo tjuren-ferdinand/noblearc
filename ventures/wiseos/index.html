@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>WiseOS — AI-driven rättning för STEM | NobleArc</title>
   <meta name="description" content="WiseOS från NobleArc. En AI-driven rättningsassistent för STEM-lärare som läser handskrift, verifierar matematik och ger tydlig feedback." />
-  <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
+  <link rel="icon" type="image/png" href="../../logo_noble.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;family=Caveat:wght@400&amp;display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../../style.css?v=3" />
+  <link rel="stylesheet" href="../../style.css?v=5" />
   <style>
     :root {
       --wise-primary: #9B5A97;
@@ -259,26 +259,12 @@
     body.theme-wiseos .product-stage .stage-hint { color: var(--wise-muted); }
     body.theme-wiseos .product-stage .stage-progress span { background: rgba(28, 26, 30, 0.15); }
     body.theme-wiseos .product-stage .stage-progress span.active { background: var(--wise-text); }
-    body.theme-wiseos .private-section.full-page .private-overlay { background: rgba(250, 249, 247, 0.85); }
-    body.theme-wiseos .private-section.full-page .private-glass {
-      background: var(--wise-glass);
-      border-color: var(--wise-border);
-      color: var(--wise-text);
-    }
-    body.theme-wiseos .private-section.full-page .private-glass p,
-    body.theme-wiseos .private-section.full-page .private-hint { color: var(--wise-muted); }
-    body.theme-wiseos .private-section.full-page .private-gate-form input {
-      background: rgba(28, 26, 30, 0.04);
-      border-color: rgba(28, 26, 30, 0.1);
-      color: var(--wise-text);
-    }
-    body.theme-wiseos .private-section.full-page .private-gate-form button { color: var(--wise-text); }
   </style>
 </head>
-<body class="loaded theme-wiseos fullpage-locked">
+<body class="loaded theme-wiseos">
   <nav class="nav" id="nav" aria-label="Primary">
     <div class="nav-inner">
-      <a class="nav-logo" href="../../index.html">NobleArc</a>
+      <a class="nav-logo" href="../../index.html"><img src="../../logo_noble.png" alt="NobleArc" /></a>
       <button class="nav-toggle" aria-label="Öppna meny" aria-expanded="false"><span></span><span></span></button>
       <ul class="nav-links">
         <li><a href="../../index.html#ventures">Satsningar</a></li>
@@ -493,21 +479,6 @@
     </div>
   </footer>
 
-  <div class="private-section full-page" data-private-code="0101" aria-hidden="false">
-    <div class="private-overlay">
-      <div class="private-glass">
-        <span class="eyebrow" style="color: var(--wise-primary);">Locked page</span>
-        <h3 style="color: var(--wise-text);">Enter code</h3>
-        <p style="color: var(--wise-muted);">To view this page, enter the code.</p>
-        <form class="private-gate-form" onsubmit="return false;" novalidate>
-          <input type="password" inputmode="numeric" pattern="[0-9]*" maxlength="4" aria-label="Access code" placeholder="••••" autocomplete="off" />
-          <button type="submit">Unlock →</button>
-        </form>
-        <div class="private-hint">&nbsp;</div>
-      </div>
-    </div>
-  </div>
-
-  <script src="../../script.js?v=4"></script>
+  <script src="../../script.js?v=5"></script>
 </body>
 </html>
