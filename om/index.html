@@ -9,11 +9,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;family=Montserrat:wght@200;400&amp;display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=1" />
+  <link rel="stylesheet" href="style.css?v=2" />
 </head>
 <body>
 
-  <header class="topbar">
+  <header class="topbar" id="topbar">
     <div class="container">
       <a class="wordmark" href="/">NobleArc</a>
       <a class="topbar-back" href="/">← Tillbaka</a>
@@ -29,10 +29,15 @@
             <span class="eyebrow">VD &amp; Grundare — NobleArc</span>
             <h1>Simon Jansson</h1>
             <p class="hero-lead">Bygger bolag där kommersiell skärpa möter tekniskt djup. Grundare av NobleArc — holdingbolaget bakom WiseOS och VUE.</p>
+            <div class="hero-meta">
+              <div><strong>NobleArc</strong>Holdingbolag</div>
+              <div><strong>WiseOS · VUE</strong>Portföljbolag</div>
+              <div><strong>Halmstad</strong>Sverige</div>
+            </div>
           </div>
           <figure class="hero-photo">
             <img src="simon.jpg" alt="Simon Jansson" />
-            <figcaption>Simon Jansson, grundare</figcaption>
+            <figcaption>Simon Jansson — Grundare</figcaption>
           </figure>
         </div>
       </div>
@@ -40,8 +45,13 @@
 
     <section class="section">
       <div class="container">
-        <span class="eyebrow">Portföljen</span>
-        <h2 class="section-title">Under NobleArc.</h2>
+        <div class="section-head reveal">
+          <span class="section-num">01</span>
+          <div>
+            <span class="eyebrow">Portföljen</span>
+            <h2 class="section-title">Under NobleArc.</h2>
+          </div>
+        </div>
 
         <div class="portfolio-item">
           <div class="portfolio-name">WISEOS</div>
@@ -59,8 +69,13 @@
 
     <section class="section">
       <div class="container">
-        <span class="eyebrow">Track record</span>
-        <h2 class="section-title">Från elitförsäljning till systembyggande.</h2>
+        <div class="section-head reveal">
+          <span class="section-num">02</span>
+          <div>
+            <span class="eyebrow">Track record</span>
+            <h2 class="section-title">Från elitförsäljning till systembyggande.</h2>
+          </div>
+        </div>
 
         <div class="timeline">
           <div class="timeline-item">
@@ -75,7 +90,8 @@
             <div class="timeline-when">Tidigare</div>
             <div>
               <div class="timeline-role">ELIT <span>— Verisure</span></div>
-              <p class="timeline-body">Den högsta säljtiteln i hela den svenska organisationen. Färre än 1&nbsp;% av alla rådgivare når dit. Upprepade utmärkelser — Top Performer och Månadens Säljare — med ansvar för hela säljcykeln, från kalla samtal till stängda avtal.</p>
+              <p class="timeline-body">Den högsta säljtiteln i hela den svenska organisationen. Upprepade utmärkelser — Top Performer och Månadens Säljare — med ansvar för hela säljcykeln, från kalla samtal till stängda avtal.</p>
+              <span class="timeline-highlight">Färre än 1&nbsp;% av alla rådgivare i Sverige</span>
             </div>
           </div>
         </div>
@@ -84,8 +100,13 @@
 
     <section class="section">
       <div class="container">
-        <span class="eyebrow">Utbildning &amp; stack</span>
-        <h2 class="section-title">Tekniskt djup, akademisk riktning.</h2>
+        <div class="section-head reveal">
+          <span class="section-num">03</span>
+          <div>
+            <span class="eyebrow">Utbildning &amp; stack</span>
+            <h2 class="section-title">Tekniskt djup, akademisk riktning.</h2>
+          </div>
+        </div>
 
         <div class="edu-grid">
           <div class="edu-block">
@@ -125,6 +146,22 @@
       <span class="copy">© 2026 NobleArc</span>
     </div>
   </footer>
+
+  <script>
+    const topbar = document.getElementById('topbar');
+    window.addEventListener('scroll', () => {
+      topbar.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    const obs = new IntersectionObserver(
+      (entries) => entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add('in-view'); }),
+      { threshold: 0.1 }
+    );
+    document.querySelectorAll('.reveal, .portfolio-item, .timeline-item, .edu-block').forEach((el) => {
+      el.classList.add('reveal');
+      obs.observe(el);
+    });
+  </script>
 
 </body>
 </html>
