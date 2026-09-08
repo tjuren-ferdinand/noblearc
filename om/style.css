@@ -115,20 +115,14 @@ body {
   aspect-ratio: 4 / 5;
   object-fit: cover;
   object-position: center 15%;
-  border-radius: 2px;
+  border-radius: 16px;
   display: block;
   filter: grayscale(35%) contrast(1.02);
   transition: filter 0.6s ease;
+  -webkit-mask-image: radial-gradient(ellipse 92% 94% at center, black 62%, transparent 100%);
+  mask-image: radial-gradient(ellipse 92% 94% at center, black 62%, transparent 100%);
 }
 .hero-photo:hover img { filter: grayscale(0%); }
-.hero-photo::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border: 1px solid var(--line);
-  border-radius: 2px;
-  pointer-events: none;
-}
 .hero-photo figcaption {
   margin-top: 0.9rem;
   font-size: 0.72rem;
