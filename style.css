@@ -326,6 +326,7 @@ main.reveal {
 
 /* Arc */
 .arc { text-align: center; }
+.arc .section-lead { margin: 0 auto; }
 .arc-line {
   width: 100%;
   max-width: 320px;
@@ -640,7 +641,6 @@ main.reveal {
   .nav-toggle.open span:nth-child(2) { top: 50%; opacity: 0; transform: translateY(-50%) scaleX(0); }
   .nav-cta { border-color: var(--subtle); padding: 0.75rem 1.5rem; min-height: 44px; }
   .section { padding: 4.5rem 0; }
-  .hero { padding: 0 22px; }
   .hero-title { font-size: clamp(2rem, 10.5vw, 3.5rem); text-wrap: balance; }
   .section-title { text-wrap: balance; }
   .hero-sub { text-wrap: pretty; }
