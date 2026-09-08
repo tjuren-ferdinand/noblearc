@@ -9,6 +9,21 @@ const FALLBACK_SECRET = 'na-7f3k9xq2v8w1z5t4y6u0i9o8p7a6s5d4f3g2h1j0k9l8m7n6b5v4
 // Assets the gate page itself needs (logo + favicon only)
 const PUBLIC_PATHS = new Set(['/logo_noble.png', '/favicon.svg']);
 
+// Pages that require the code again even after the site-wide unlock
+const PROTECTED_PATHS = new Set(['/ventures/vue/', '/ventures/north/', '/ventures/forge/']);
+
+function pathCookieName(pathname) {
+  return 'na_gate_' + pathname.replace(/[^a-z0-9]/gi, '');
+}
+
+async function pathToken(env, pathname) {
+  const code = env.ACCESS_CODE || FALLBACK_CODE;
+  const secret = env.COOKIE_SECRET || FALLBACK_SECRET;
+  const data = new TextEncoder().encode(code + ':' + secret + ':' + pathname);
+  const hash = await crypto.subtle.digest('SHA-256', data);
+  return [...new Uint8Array(hash)].map((b) => b.toString(16).padStart(2, '0')).join('');
+}
+
 async function expectedToken(env) {
   const code = env.ACCESS_CODE || FALLBACK_CODE;
   const secret = env.COOKIE_SECRET || FALLBACK_SECRET;
@@ -29,7 +44,7 @@ function readCookie(request, name) {
 
 function gatePage(denied) {
   return `<!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -148,14 +163,14 @@ function gatePage(denied) {
   <div id="splash" class="splash"><h1>NOBLEARC</h1></div>
   <div class="card" id="card">
     <img class="logo" src="/logo_noble.png" alt="NobleArc" />
-    <span class="eyebrow">Locked page</span>
-    <h1>Enter code</h1>
-    <p>To view this page, enter the code.</p>
+    <span class="eyebrow">Låst sida</span>
+    <h1>Ange kod</h1>
+    <p>Ange koden för att se sidan.</p>
     <form method="post" action="">
-      <input id="code" type="password" name="code" inputmode="numeric" pattern="[0-9]*" maxlength="4" aria-label="Access code" placeholder="••••" autocomplete="off" />
-      <button type="submit">Unlock →</button>
+      <input id="code" type="password" name="code" inputmode="numeric" pattern="[0-9]*" maxlength="4" aria-label="Kod" placeholder="••••" autocomplete="off" />
+      <button type="submit">Lås upp →</button>
     </form>
-    <div class="hint">${denied ? 'The code does not match.' : '&nbsp;'}</div>
+    <div class="hint">${denied ? 'Koden stämmer inte.' : '&nbsp;'}</div>
   </div>
   <script>
     setTimeout(function () {
@@ -171,6 +186,7 @@ function gatePage(denied) {
 export async function onRequest(context) {
   const { request, env } = context;
   const url = new URL(request.url);
+  const pathname = url.pathname.endsWith('/') ? url.pathname : url.pathname + '/';
 
   if (PUBLIC_PATHS.has(url.pathname)) {
     return context.next();
@@ -178,6 +194,7 @@ export async function onRequest(context) {
 
   const token = await expectedToken(env);
   const accessCode = env.ACCESS_CODE || FALLBACK_CODE;
+  const isProtected = PROTECTED_PATHS.has(pathname);
 
   if (request.method === 'POST') {
     let code = '';
@@ -188,16 +205,29 @@ export async function onRequest(context) {
       code = '';
     }
     if (code === accessCode) {
-      return new Response(null, {
-        status: 303,
-        headers: {
-          Location: url.pathname + url.search,
-          'Set-Cookie': `${COOKIE_NAME}=${token}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=604800`,
-          'Cache-Control': 'no-store',
-        },
+      const headers = new Headers({
+        Location: url.pathname + url.search,
+        'Cache-Control': 'no-store',
       });
+      headers.append('Set-Cookie', `${COOKIE_NAME}=${token}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=604800`);
+      if (isProtected) {
+        const pToken = await pathToken(env, pathname);
+        headers.append('Set-Cookie', `${pathCookieName(pathname)}=${pToken}; Path=${pathname}; HttpOnly; Secure; SameSite=Lax; Max-Age=604800`);
+      }
+      return new Response(null, { status: 303, headers });
     }
     return new Response(gatePage(true), {
+      status: 401,
+      headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store' },
+    });
+  }
+
+  if (isProtected) {
+    const pToken = await pathToken(env, pathname);
+    if (readCookie(request, pathCookieName(pathname)) === pToken) {
+      return context.next();
+    }
+    return new Response(gatePage(false), {
       status: 401,
       headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store' },
     });

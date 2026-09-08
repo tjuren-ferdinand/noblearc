@@ -655,6 +655,70 @@ main.reveal {
   .phone-screen { padding: 1.25rem; }
 }
 
+/* Gate modal — kod-kontroll per venture-sida */
+.gate-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 4%;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.gate-modal[hidden] { display: none; }
+.gate-modal-card {
+  width: min(460px, 92%);
+  text-align: center;
+  padding: 2.5rem;
+  border-radius: 24px;
+  border: 1px solid var(--subtle);
+  background: rgba(18, 18, 18, 0.9);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+}
+.gate-modal-card .eyebrow { margin-bottom: 0.75rem; }
+.gate-modal-card h3 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 400;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+}
+.gate-modal-card p { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
+.gate-modal-card form { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; }
+.gate-modal-card input {
+  width: 12rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--subtle);
+  border-radius: 999px;
+  padding: 0.7rem 1rem;
+  color: var(--text);
+  font: inherit;
+  outline: none;
+  text-align: center;
+  letter-spacing: 0.3em;
+  transition: border-color 0.2s;
+}
+.gate-modal-card input:focus { border-color: rgba(255, 255, 255, 0.25); }
+.gate-modal-card button {
+  padding: 0.7rem 1.25rem;
+  border: 1px solid var(--subtle);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+.gate-modal-card button:hover { background: rgba(255, 255, 255, 0.03); border-color: rgba(255, 255, 255, 0.25); }
+.gate-modal-hint { min-height: 1.5rem; margin-top: 1rem; font-size: 0.85rem; color: var(--copper); }
+@media (max-width: 768px) {
+  .gate-modal-card { padding: 2rem 1.5rem; }
+  .gate-modal-card form { flex-direction: column; align-items: center; }
+  .gate-modal-card input { width: 100%; }
+}
+
 /* Venture identity cards — kept minimal to preserve existing grid */
 .venture-card.vue {
   --venture-accent: #65E7DE;

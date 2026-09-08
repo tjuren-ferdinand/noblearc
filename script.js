@@ -93,23 +93,76 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!form.checkValidity()) {
         if (formStatus) {
           formStatus.className = 'form-status error';
-          formStatus.textContent = 'Please fill in all required fields.';
+          formStatus.textContent = 'Fyll i namn, e-post och meddelande.';
         }
         return;
       }
       const fd = new FormData(form);
-      const name = fd.get('name') || 'Unknown sender';
+      const name = fd.get('name') || 'Okänd avsändare';
       const email = fd.get('email') || '';
       const building = fd.get('building') || '';
       const message = fd.get('message') || '';
-      const subject = `New message from ${name}`;
-      const sent = new Date().toLocaleString('en-US');
-      const body = `New message from the NobleArc website\r\n\r\nSent: ${sent}\r\n\r\nName: ${name}\r\nEmail: ${email}\r\nWhat are you building?: ${building}\r\n\r\nMessage:\r\n${message}`;
+      const subject = `Nytt meddelande från ${name}`;
+      const sent = new Date().toLocaleString('sv-SE');
+      const body = `Nytt meddelande från NobleArc-webbplatsen\r\n\r\nSkickat: ${sent}\r\n\r\nNamn: ${name}\r\nE-post: ${email}\r\nVad bygger du?: ${building}\r\n\r\nMeddelande:\r\n${message}`;
       window.location.href = `mailto:suits@noblearc.se?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       form.reset();
       if (formStatus) {
         formStatus.className = 'form-status success';
-        formStatus.textContent = 'Thank you. We will be in touch soon.';
+        formStatus.textContent = 'Tack. Vi hör av oss snart.';
+      }
+    });
+  }
+
+  // Venture gate modal — koden verifieras server-side av middleware:n
+  const gateModal = document.getElementById('gate-modal');
+  const gateForm = document.getElementById('gate-modal-form');
+  const gateInput = document.getElementById('gate-modal-code');
+  const gateHint = document.getElementById('gate-modal-hint');
+  let gateTarget = null;
+
+  document.querySelectorAll('a[data-gate]').forEach((card) => {
+    card.addEventListener('click', (e) => {
+      e.preventDefault();
+      gateTarget = card.getAttribute('href');
+      if (gateModal) {
+        gateModal.hidden = false;
+        if (gateHint) gateHint.textContent = '\u00a0';
+        if (gateInput) {
+          gateInput.value = '';
+          setTimeout(() => gateInput.focus(), 50);
+        }
+      }
+    });
+  });
+
+  if (gateModal) {
+    gateModal.addEventListener('click', (e) => {
+      if (e.target === gateModal) gateModal.hidden = true;
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') gateModal.hidden = true;
+    });
+  }
+
+  if (gateForm) {
+    gateForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!gateTarget) return;
+      try {
+        const res = await fetch(gateTarget, {
+          method: 'POST',
+          body: new FormData(gateForm),
+          redirect: 'manual',
+        });
+        if (res.type === 'opaqueredirect' || res.status === 0 || res.ok) {
+          window.location.href = gateTarget;
+        } else {
+          if (gateHint) gateHint.textContent = 'Koden stämmer inte.';
+          if (gateInput) { gateInput.value = ''; gateInput.focus(); }
+        }
+      } catch (err) {
+        window.location.href = gateTarget;
       }
     });
   }
