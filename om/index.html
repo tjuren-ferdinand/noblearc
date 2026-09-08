@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Simon Jansson — VD & Grundare, NobleArc</title>
-  <meta name="description" content="Simon Jansson, VD och grundare av NobleArc. Kommersiell elit möter tekniskt djup." />
+  <title>Simon Suits — VD & Grundare, NobleArc</title>
+  <meta name="description" content="Simon Suits, VD och grundare av NobleArc. Kommersiell elit möter tekniskt djup." />
   <link rel="icon" type="image/png" href="../logo_noble.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;family=Montserrat:wght@200;400&amp;display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=5" />
+  <link rel="stylesheet" href="style.css?v=6" />
 </head>
 <body>
 
@@ -27,7 +27,7 @@
         <div class="hero-grid">
           <div>
             <span class="eyebrow">VD &amp; Grundare — NobleArc</span>
-            <h1>Simon Jansson</h1>
+            <h1>Simon Suits</h1>
             <p class="hero-lead">Bygger bolag där kommersiell skärpa möter tekniskt djup. Grundare av NobleArc — holdingbolaget bakom WiseOS och VUE.</p>
             <div class="hero-meta">
               <div><strong>NobleArc</strong>Holdingbolag</div>
@@ -36,8 +36,8 @@
             </div>
           </div>
           <figure class="hero-photo">
-            <img src="simon.jpg" alt="Simon Jansson" />
-            <figcaption>Simon Jansson — Grundare</figcaption>
+            <img src="simon.jpg" alt="Simon Suits" />
+            <figcaption>Simon Suits — Grundare</figcaption>
           </figure>
         </div>
       </div>
@@ -196,8 +196,9 @@
       (entries) => entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add('in-view'); }),
       { threshold: 0.1 }
     );
-    document.querySelectorAll('.reveal, .portfolio-item, .timeline-item, .award, .edu-block').forEach((el) => {
+    document.querySelectorAll('.reveal, .portfolio-item, .timeline-item, .award, .edu-block').forEach((el, i) => {
       el.classList.add('reveal');
+      el.style.transitionDelay = (i % 6) * 70 + 'ms';
       obs.observe(el);
     });
   </script>
