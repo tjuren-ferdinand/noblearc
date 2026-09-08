@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;family=Montserrat:wght@200;400&amp;display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=2" />
+  <link rel="stylesheet" href="style.css?v=3" />
 </head>
 <body>
 
@@ -103,6 +103,45 @@
         <div class="section-head reveal">
           <span class="section-num">03</span>
           <div>
+            <span class="eyebrow">Utmärkelser</span>
+            <h2 class="section-title">Verisure, i siffror.</h2>
+          </div>
+        </div>
+
+        <div class="awards-grid">
+          <div class="award">
+            <span class="award-name">ELIT</span>
+            <span class="award-detail">H2 2022 — Högsta säljtiteln i Sverige</span>
+          </div>
+          <div class="award">
+            <span class="award-name">Top Performer</span>
+            <span class="award-detail">× 2</span>
+          </div>
+          <div class="award">
+            <span class="award-name">Månadens Säljare</span>
+            <span class="award-detail">× 5</span>
+          </div>
+          <div class="award">
+            <span class="award-name">Säljstegen</span>
+            <span class="award-detail">Nivå 100</span>
+          </div>
+          <div class="award">
+            <span class="award-name">Graduation</span>
+            <span class="award-detail">Verisure Sales School</span>
+          </div>
+          <div class="award">
+            <span class="award-name">Examenbevis</span>
+            <span class="award-detail">Verisure Sales School</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="section-num">04</span>
+          <div>
             <span class="eyebrow">Utbildning &amp; stack</span>
             <h2 class="section-title">Tekniskt djup, akademisk riktning.</h2>
           </div>
@@ -157,7 +196,7 @@
       (entries) => entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add('in-view'); }),
       { threshold: 0.1 }
     );
-    document.querySelectorAll('.reveal, .portfolio-item, .timeline-item, .edu-block').forEach((el) => {
+    document.querySelectorAll('.reveal, .portfolio-item, .timeline-item, .award, .edu-block').forEach((el) => {
       el.classList.add('reveal');
       obs.observe(el);
     });

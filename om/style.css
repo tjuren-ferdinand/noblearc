@@ -215,6 +215,19 @@ body {
   color: var(--gold);
 }
 
+/* Utmärkelser */
+.awards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 3rem;
+}
+.award {
+  padding: 1.75rem 0;
+  border-top: 1px solid var(--line);
+}
+.award-name { display: block; font-size: 1.05rem; font-weight: 400; letter-spacing: 0.02em; margin-bottom: 0.3rem; }
+.award-detail { font-size: 0.82rem; color: var(--muted); }
+
 /* Utbildning & stack */
 .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem 5rem; }
 .edu-block h3 {
@@ -265,5 +278,6 @@ body {
   .portfolio-status { justify-self: start; }
   .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; }
   .edu-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .awards-grid { grid-template-columns: 1fr; }
   .section { padding: 4.5rem 0; }
 }
