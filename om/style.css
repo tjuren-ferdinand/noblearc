@@ -96,6 +96,14 @@ body {
   margin-bottom: 2rem;
   white-space: nowrap;
 }
+.hero-role {
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: -1.25rem 0 1.75rem;
+}
 .hero-lead {
   font-size: 1.15rem;
   color: var(--soft);
@@ -159,6 +167,12 @@ body {
   font-weight: 300;
   letter-spacing: -0.02em;
 }
+.section-intro {
+  color: var(--soft);
+  font-size: 1rem;
+  max-width: 56ch;
+  margin: -1.5rem 0 3rem;
+}
 
 /* Portfolio */
 .portfolio-item {
@@ -176,6 +190,15 @@ body {
   font-weight: 400;
   font-size: 1.05rem;
   letter-spacing: 0.14em;
+}
+.portfolio-label {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  margin-top: 0.4rem;
 }
 .portfolio-desc { color: var(--soft); font-size: 0.98rem; max-width: 56ch; }
 .portfolio-status {
@@ -251,6 +274,17 @@ body {
   transition: border-color 0.2s, color 0.2s;
 }
 .tag:hover { border-color: rgba(255, 255, 255, 0.25); color: var(--text); }
+
+/* Avslutning */
+.cta-link {
+  display: inline-block;
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 2px;
+  transition: border-color 0.2s;
+}
+.cta-link:hover { border-color: var(--text); }
 
 /* Footer */
 .page-footer { padding: 5rem 0 3rem; border-top: 1px solid var(--line); }
