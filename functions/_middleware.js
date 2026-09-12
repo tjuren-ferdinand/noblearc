@@ -1,8 +1,6 @@
 // Server-side access gate for Cloudflare Pages.
-// Blocks every request until the correct code has been entered.
+// The main site is public; only PROTECTED_PATHS require the code.
 // Code is checked server-side; page content is never sent without a valid cookie.
-
-const COOKIE_NAME = 'na_auth';
 const FALLBACK_CODE = '0101';
 const FALLBACK_SECRET = 'na-7f3k9xq2v8w1z5t4y6u0i9o8p7a6s5d4f3g2h1j0k9l8m7n6b5v4c3x2z1';
 
@@ -20,14 +18,6 @@ async function pathToken(env, pathname) {
   const code = env.ACCESS_CODE || FALLBACK_CODE;
   const secret = env.COOKIE_SECRET || FALLBACK_SECRET;
   const data = new TextEncoder().encode(code + ':' + secret + ':' + pathname);
-  const hash = await crypto.subtle.digest('SHA-256', data);
-  return [...new Uint8Array(hash)].map((b) => b.toString(16).padStart(2, '0')).join('');
-}
-
-async function expectedToken(env) {
-  const code = env.ACCESS_CODE || FALLBACK_CODE;
-  const secret = env.COOKIE_SECRET || FALLBACK_SECRET;
-  const data = new TextEncoder().encode(code + ':' + secret);
   const hash = await crypto.subtle.digest('SHA-256', data);
   return [...new Uint8Array(hash)].map((b) => b.toString(16).padStart(2, '0')).join('');
 }
@@ -192,9 +182,12 @@ export async function onRequest(context) {
     return context.next();
   }
 
-  const token = await expectedToken(env);
-  const accessCode = env.ACCESS_CODE || FALLBACK_CODE;
   const isProtected = PROTECTED_PATHS.has(pathname);
+  if (!isProtected) {
+    return context.next();
+  }
+
+  const accessCode = env.ACCESS_CODE || FALLBACK_CODE;
 
   if (request.method === 'POST') {
     let code = '';
@@ -209,11 +202,8 @@ export async function onRequest(context) {
         Location: url.pathname + url.search,
         'Cache-Control': 'no-store',
       });
-      headers.append('Set-Cookie', `${COOKIE_NAME}=${token}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=604800`);
-      if (isProtected) {
-        const pToken = await pathToken(env, pathname);
-        headers.append('Set-Cookie', `${pathCookieName(pathname)}=${pToken}; Path=${pathname}; HttpOnly; Secure; SameSite=Lax; Max-Age=604800`);
-      }
+      const pToken = await pathToken(env, pathname);
+      headers.append('Set-Cookie', `${pathCookieName(pathname)}=${pToken}; Path=${pathname}; HttpOnly; Secure; SameSite=Lax; Max-Age=604800`);
       return new Response(null, { status: 303, headers });
     }
     return new Response(gatePage(true), {
@@ -222,18 +212,8 @@ export async function onRequest(context) {
     });
   }
 
-  if (isProtected) {
-    const pToken = await pathToken(env, pathname);
-    if (readCookie(request, pathCookieName(pathname)) === pToken) {
-      return context.next();
-    }
-    return new Response(gatePage(false), {
-      status: 401,
-      headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store' },
-    });
-  }
-
-  if (readCookie(request, COOKIE_NAME) === token) {
+  const pToken = await pathToken(env, pathname);
+  if (readCookie(request, pathCookieName(pathname)) === pToken) {
     return context.next();
   }
 
