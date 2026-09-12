@@ -259,7 +259,7 @@ main.reveal {
   padding: 0 4%;
 }
 .hero-title {
-  font-size: clamp(2.5rem, 7vw, 5.5rem);
+  font-size: clamp(2.25rem, 6vw, 4.5rem);
   font-weight: 400;
   line-height: 1.05;
   letter-spacing: -0.03em;
