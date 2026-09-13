@@ -85,10 +85,10 @@ document.addEventListener('DOMContentLoaded', () => {
     ).observe(arc);
   }
 
-  // Contact form → mailto (hosting är statisk; mailto är real fallback som öppnar användarens klient)
+  // Contact form → Web3Forms skickar mailet direkt till suits@noblearc.se
   const formStatus = document.getElementById('form-status');
   if (form) {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
       if (!form.checkValidity()) {
         if (formStatus) {
@@ -97,19 +97,31 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         return;
       }
-      const fd = new FormData(form);
-      const name = fd.get('name') || 'Okänd avsändare';
-      const email = fd.get('email') || '';
-      const building = fd.get('building') || '';
-      const message = fd.get('message') || '';
-      const subject = `Nytt meddelande från ${name}`;
-      const sent = new Date().toLocaleString('sv-SE');
-      const body = `Nytt meddelande från NobleArc-webbplatsen\r\n\r\nSkickat: ${sent}\r\n\r\nNamn: ${name}\r\nE-post: ${email}\r\nVad bygger du?: ${building}\r\n\r\nMeddelande:\r\n${message}`;
-      window.location.href = `mailto:suits@noblearc.se?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      form.reset();
-      if (formStatus) {
-        formStatus.className = 'form-status success';
-        formStatus.textContent = 'Tack. Vi hör av oss snart.';
+      const btn = form.querySelector('button[type="submit"]');
+      if (btn) btn.disabled = true;
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' },
+        });
+        const data = await res.json();
+        if (data.success) {
+          form.reset();
+          if (formStatus) {
+            formStatus.className = 'form-status success';
+            formStatus.textContent = 'Tack. Vi hör av oss snart.';
+          }
+        } else {
+          throw new Error('send failed');
+        }
+      } catch (err) {
+        if (formStatus) {
+          formStatus.className = 'form-status error';
+          formStatus.textContent = 'Något gick fel. Maila suits@noblearc.se direkt.';
+        }
+      } finally {
+        if (btn) btn.disabled = false;
       }
     });
   }

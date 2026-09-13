@@ -200,10 +200,13 @@
         <span class="eyebrow">Kontakt</span>
         <h2 class="section-title">Bygger du något intressant?</h2>
         <p class="section-lead">Vi pratar gärna med människor som bygger.</p>
-        <form class="contact-form" id="contact-form" action="#" novalidate>
+        <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="WEB3FORMS_KEY_HERE" />
+          <input type="hidden" name="subject" value="Nytt meddelande från noblearc.se" />
+          <input type="hidden" name="from_name" value="NobleArc webbplats" />
+          <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
           <input type="text" name="name" placeholder="Namn" required />
           <input type="email" name="email" placeholder="E-post" required />
-          <input type="text" name="building" placeholder="Vad bygger du?" />
           <textarea name="message" rows="4" placeholder="Meddelande" required></textarea>
           <button type="submit" class="btn">Hör av dig →</button>
         </form>
