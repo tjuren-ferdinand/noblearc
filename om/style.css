@@ -153,8 +153,9 @@ body {
   display: flex;
   align-items: baseline;
   gap: 1.5rem;
-  margin-bottom: 3.5rem;
+  margin-bottom: 1rem;
 }
+.section-head .eyebrow { margin-bottom: 0; }
 .section-num {
   font-family: 'Montserrat', sans-serif;
   font-size: 0.75rem;
@@ -166,6 +167,7 @@ body {
   font-size: clamp(1.7rem, 3.2vw, 2.4rem);
   font-weight: 300;
   letter-spacing: -0.02em;
+  margin-bottom: 3rem;
 }
 .section-intro {
   color: var(--soft);
@@ -184,7 +186,8 @@ body {
   border-top: 1px solid var(--line);
   transition: background 0.3s;
 }
-.portfolio-item:first-of-type { border-top: none; padding-top: 0; }
+.section-title + .portfolio-item,
+.section-intro + .portfolio-item { border-top: none; padding-top: 0; }
 .portfolio-name {
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
@@ -251,7 +254,7 @@ body {
   border-top: 1px solid var(--line);
 }
 .award-name { display: block; font-size: 1.05rem; font-weight: 400; letter-spacing: 0.02em; margin-bottom: 0.3rem; }
-.award-detail { font-size: 0.82rem; color: var(--muted); }
+.award-detail { display: block; font-size: 0.82rem; color: var(--muted); }
 
 /* Utbildning & stack */
 .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem 5rem; }
